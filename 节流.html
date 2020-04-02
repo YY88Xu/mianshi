@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+    <style>
+        #container{
+            width: 100%; height: 200px; line-height: 200px; text-align: center; color: #fff; background-color: #444; font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<p>参考：https://github.com/mqyqingfeng/Blog/issues/26</p>
+<script>
+	var count = 1;
+	var container = document.getElementById("container");
+	function getUserAction(e) {
+		container.innerHTML = count++;
+		console.log(e)
+	}
+	container.onmousemove  = debouce(getUserAction, 1000, true);
+
+    function throttle(fn, wait, immediate) {
+        let timer;
+        return function(){
+	        let context = this;
+	        let args = arguments;
+	        if(!timer){
+		        timer = setTimeout(function () {
+			        fn.apply(context, args);
+			        timer = null;
+		        }, wait);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+
+</html>

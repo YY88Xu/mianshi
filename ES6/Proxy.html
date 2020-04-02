@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>proxy</title>
+</head>
+<body>
+</body>
+<script>
+
+    var obj = new Proxy({}, {
+    	get: function (target, propKey, receiver) {
+            console.log(`getting ${propKey}!`);
+            return Reflect.get(target, propKey, receiver);
+	    },
+        set: function (target, propKey, value, receiver) {
+            console.log(`setting ${propKey}!`);
+            return Reflect.set(target, propKey, value, receiver);
+        }
+    })
+    {
+	    //没有handler
+	    var target = {};
+	    var handler = {};
+	    var proxy = new Proxy(target, handler);
+	    proxy.a = 'aa';
+	    console.log(target.a);
+    }
+
+    {
+        //多个拦截
+        var handler = {
+        	get: function (target, name) {
+                if(name==='prototype'){
+                	return Object.prototype;
+                }
+                return 'Hello, '+name;
+	        },
+            apply: function (target, thisBinding, args) {
+                return args[0];
+            },
+            construct: function (target, args) {
+                return {value: args[1]};
+            }
+        }
+
+        var fproxy = new Proxy(function(x,y){
+        	return x+y;
+        }, handler);
+        console.log(fproxy(1,2));
+        console.log(new fproxy(1,2));
+        console.log(fproxy.prototype===Object.prototype);
+        console.log(fproxy.foo, fproxy.bar);
+    }
+
+    {
+    	//get
+        var person = {
+        	name: '张三'
+        };
+        console.log(person.name,person.age);
+        var proxy = new Proxy(person, {
+        	get: function (target, propKey) {
+                if(propKey in target){
+                	return target[propKey]
+                }else{
+                	throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.")
+                }
+	        }
+        });
+	    console.log(proxy,person);
+	    //console.log(proxy.name,proxy.age);
+    }
+
+    {
+    	//负数索引 高级
+        function createArray(...elements){
+        	let handler = {
+        		get: function(target, propKey, receiver) {
+        			let index = Number(propKey);
+        			if(index<0){
+        				propKey = String(target.length + index);
+                    }
+                    return Reflect.get(target, propKey, receiver);
+                }
+            }
+            let target = [];
+        	target.push(...elements);
+        	return new Proxy(target, handler);
+        }
+        // let arr = createArray('a', 'b');
+        // console.log(arr[-1]);
+	    function mycreateArray(...elements){
+		    let handler = {
+			    get: function(target, propKey) {
+				    let index = Number(propKey);
+				    if(index<0){
+					    propKey = String(target.length + index);
+				    }
+				    return target[propKey];
+			    }
+		    }
+		    let target = [];
+		    target.push(...elements);
+		    return new Proxy(target, handler);
+	    }
+
+	    let arr = mycreateArray('a', 'b');
+	    console.log(arr[-1]);
+    }
+
+    {
+    	//链式操作
+        var pipe = function (value) {
+            var funcStack = [];
+            var oproxy = new Proxy({}, {
+            	get: function(pipeObjetc, fnName){
+            		if(fnName === 'get'){
+            			return funcStack.reduce(function(val, fn){
+            				return fn(val);
+                        }, value);
+                    }
+		            funcStack.push(window[fnName]);
+		            return oproxy;
+                }
+            });
+
+            return oproxy;
+        }
+
+
+        var double = n=>n*2;
+        var pow = n=>n*n;
+        var reverseInt = n=>n.toString().split("").reverse().join("")|0;
+	    pipe(3).double.pow.reverseInt.get
+        console.log(pipe(3).double.pow.reverseInt.get);
+    }
+
+    {
+    	//实现一个生成各种 DOM 节点的通用函数dom
+        const dom = new Proxy({}, {
+        	get(target, property){
+        		return function(attrs={}, ...children){
+        			const el = document.createElement(property);
+                    for(let prop of Object.keys(attrs)){
+                    	el.setAttribute(prop, attrs[prop])
+                    }
+                }
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

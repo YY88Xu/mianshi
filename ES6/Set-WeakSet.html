@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>2</div>
+</body>
+<script>
+    const s = new Set();
+    [1,2,3,3,4,4].forEach(x=>{
+    	s.add(x);
+    })
+    for(let i of s){
+    	console.log(i);
+    }
+    const set = new Set([1,2,3,4,4]);
+    let aa = [...set];
+    console.log(aa);
+
+    const items = new Set(document.querySelectorAll('div'));
+    console.log(items.size)
+    console.log('------------------Set和对象的区别-------------------')
+    const properties = {
+    	width: 1,
+        height: 100
+    };
+
+    if(properties['name']){
+    	//do something
+    }
+
+    if(properties['width']){
+    	console.log('width: '+properties['width'])
+    }
+    console.log('------------------Set 和 数组的区别-------------------')
+    const propSet = new Set();
+    propSet.add('width');
+    propSet.add('height');
+
+    if(propSet.has('name')){
+    	//do something
+    }
+    //Set 和 数组的区别
+    let arr = [1,2,3];
+    console.log(propSet, arr);
+
+    console.log(arr instanceof Array, propSet instanceof Set);
+    console.log('-------------------')
+    // keys() values() entries()
+    console.log('------------------keys() values() entries()-------------------')
+    for(let item of propSet.keys()){
+    	console.log(item);
+    }
+
+    for(let item of propSet.values()){
+    	console.log(item)
+    }
+
+    for(let item of propSet.entries()){
+    	console.log(item);
+    }
+
+    console.log('------------------Set 转为 数组-------------------')
+    //Set 转为 数组
+    const items1 = Array.from(propSet);
+    const items2 = [...propSet];
+    console.log(items1, items2);
+
+
+    console.log('------------------（Union）、交集（Intersect）和差集（Difference），map filter不能直接用在set中-------------------')
+    let a = new Set([1,2,3]);
+    let b = new Set([4,3,2]);
+
+    let union = new Set([...a, ...b]);
+
+    let intersect = new Set([...a].filter(i=>b.has(i)));
+
+    let difference = new Set([...a].filter(i=> !b.has(i)));
+
+    console.log(union, intersect, difference);
+
+    console.log('------------------map遍历方法-------------------')
+    const map = new Map([['F', 'no'], ['T', 'yes']]);
+    for(let key of map.keys()){
+    	console.log(key)
+    }
+    for(let value of map.values()){
+    	console.log(value);
+    }
+
+    for(let item of map.entries()){
+    	console.log(item[0], item[1]);
+    }
+
+    for(let [key, value] of map){
+    	console.log(key,value)
+    }
+
+    map.forEach((value,key,map)=>{
+	    console.log("Key: %s, Value: %s", key, value);
+    })
+
+    console.log('------------------map转数组-------------------')
+    console.log([...map.keys()])
+    console.log([...map.values()])
+    console.log([...map.entries()])
+    console.log([...map])
+
+    console.log('------------------map 对象-------------------')
+    let obj = {"a": 1, "b": 2};
+    let mapTmp = new Map(Object.entries(obj));
+
+    function objToStrMap(obj){
+    	let strMap = new Map();
+    	for(let k of Object.keys(obj)){
+    		strMap.set(k, obj[k]);
+        }
+        return strMap;
+    }
+    console.log(objToStrMap({yes: true, no: false}))
+
+    console.log('------------------weakMap-------------------')
+
+    const _counter = new WeakMap();
+    const _action = new WeakMap();
+
+    class Countdown{
+    	constructor(counter, action){
+    		_counter.set(this, counter);
+    		_action.set(this, action);
+        }
+        dec(){
+    		let counter = _counter.get(this);
+    		if(counter<1) return;
+    		counter--;
+    		_counter.set(this, counter);
+    		if(counter===0){
+    			_action.get(this)();
+            }
+        }
+    }
+
+    const c = new Countdown(2, ()=>{
+    	console.log('Done');
+    });
+
+    c.dec();
+    c.dec();
+
+
+
+
+
+</script>
+</html>
