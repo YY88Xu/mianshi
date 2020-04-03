@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="816d4d00-1ce4-4605-be7e-7842425fd679" name="Default" comment="" />
+    <list default="true" id="816d4d00-1ce4-4605-be7e-7842425fd679" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/CSS/flex.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EventLoop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/动画.html" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/动画.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,20 +19,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Set-WeakSet.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ES6/Set-WeakSet.html">
+      <file leaf-file-name="flex.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CSS/flex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="135" column="14" lean-forward="true" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+            <state relative-caret-position="200">
+              <caret line="22" column="20" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Proxy.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ES6/Proxy.html">
+      <file leaf-file-name="EventLoop.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/EventLoop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="145" column="58" lean-forward="true" selection-start-line="145" selection-start-column="58" selection-end-line="145" selection-end-column="58" />
+            <state relative-caret-position="157">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -41,6 +46,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -48,6 +56,9 @@
         <option value="$PROJECT_DIR$/防抖.html" />
         <option value="$PROJECT_DIR$/Set-WeakSet.html" />
         <option value="$PROJECT_DIR$/ES6/Proxy.html" />
+        <option value="$PROJECT_DIR$/CSS/动画.html" />
+        <option value="$PROJECT_DIR$/CSS/flex.html" />
+        <option value="$PROJECT_DIR$/EventLoop.html" />
       </list>
     </option>
   </component>
@@ -61,11 +72,12 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1386" />
-    <option name="height" value="934" />
+    <option name="x" value="197" />
+    <option name="y" value="60" />
+    <option name="width" value="1382" />
+    <option name="height" value="984" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -77,11 +89,6 @@
             <path>
               <item name="mianshi" type="b2602c69:ProjectViewProjectNode" />
               <item name="mianshi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mianshi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mianshi" type="462c0819:PsiDirectoryNode" />
-              <item name="ES6" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -130,44 +137,53 @@
       <workItem from="1585751979900" duration="2832000" />
       <workItem from="1585792881455" duration="1760000" />
       <workItem from="1585815501297" duration="3191000" />
-      <workItem from="1585827924242" duration="7737000" />
+      <workItem from="1585827924242" duration="8297000" />
+      <workItem from="1585877789701" duration="4593000" />
+      <workItem from="1585902018789" duration="4516000" />
     </task>
+    <task id="LOCAL-00001" summary="（+）CSS动画">
+      <created>1585882198850</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585882198850</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15520000" />
+    <option name="totallyTimeSpent" value="25189000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="255" y="442" width="1386" height="934" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15652819" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11116965" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.4637053" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="UI Designer" order="5" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Maven Projects" order="8" />
     </layout>
@@ -178,7 +194,39 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="（+）CSS动画" />
+    <option name="LAST_COMMIT_MESSAGE" value="（+）CSS动画" />
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ES6/Proxy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS/动画.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/Set-WeakSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3375">
+          <caret line="135" column="14" lean-forward="true" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/Proxy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3625">
+          <caret line="145" column="58" lean-forward="true" selection-start-line="145" selection-start-column="58" selection-end-line="145" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ES6/Set-WeakSet.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -223,15 +271,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ES6/Set-WeakSet.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="135" column="14" lean-forward="true" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+        <state relative-caret-position="3375">
+          <caret line="135" column="14" selection-start-line="135" selection-start-column="14" selection-end-line="135" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS/动画.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ES6/Proxy.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="145" column="58" lean-forward="true" selection-start-line="145" selection-start-column="58" selection-end-line="145" selection-end-column="58" />
+        <state relative-caret-position="425">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS/flex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="22" column="20" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EventLoop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>

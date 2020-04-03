@@ -10,21 +10,42 @@
             height: 30px;
             border-radius: 15px;
             background-color: red;
-            animation: myfirst 5s linear infinite;
-            -moz-animation: myfirst 5s linear infinite;
-            -webkit-animation: myfirst 5s linear infinite;
-            -o-animation:myfirst 5s linear infinite;
+            animation: myfirst 2s linear infinite alternate;
+            -moz-animation: myfirst 2s linear infinite alternate;
+            -webkit-animation: myfirst 2s linear infinite alternate;
+            -o-animation:myfirst 2s linear infinite alternate;
         }
+        /*@keyframes myfirst {*/
+            /*0% {transform: translate(0,0)}*/
+            /*25% {transform: translate(100px,0)}*/
+            /*50% {transform: translate(200px,0)}*/
+            /*75% {transform: translate(100px,0)}*/
+            /*100% {transform: translate(0px,0)}*/
+        /*}*/
         @keyframes myfirst {
-            0% {transform: translate(0,0)}
-            25% {transform: translate(100px,0)}
-            50% {transform: translate(200px,0)}
-            75% {transform: translate(100px,0)}
-            100% {transform: translate(0px,0)}
+            from {transform: translate(0,0)}
+            to {transform: translate(200px, 0)}
+        }
+        .progress{
+            height: 10px;
+            border: 1px solid;
+            background: linear-gradient(#0ff,#0ff);
+            background-repeat: no-repeat;
+            background-size: 0;
+            animation: move 2s linear forwards;
+        }
+        .progress:hover{
+            animation-play-state: paused;
+        }
+        @keyframes move {
+            100%{
+                background-size: 100%;
+            }
         }
     </style>
 </head>
 <body>
 <div class="circle"></div>
+<div class="progress"></div>
 </body>
 </html>
