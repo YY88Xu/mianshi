@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        /* 参考 https://juejin.im/post/5cdd178ee51d456e811d279b */
+        .circle{
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: red;
+            animation: myfirst 5s linear infinite;
+            -moz-animation: myfirst 5s linear infinite;
+            -webkit-animation: myfirst 5s linear infinite;
+            -o-animation:myfirst 5s linear infinite;
+        }
+        @keyframes myfirst {
+            0% {transform: translate(0,0)}
+            25% {transform: translate(100px,0)}
+            50% {transform: translate(200px,0)}
+            75% {transform: translate(100px,0)}
+            100% {transform: translate(0px,0)}
+        }
+    </style>
+</head>
+<body>
+<div class="circle"></div>
+</body>
+</html>

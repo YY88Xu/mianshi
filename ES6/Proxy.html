@@ -7,18 +7,45 @@
 <body>
 </body>
 <script>
-
-    var obj = new Proxy({}, {
-    	get: function (target, propKey, receiver) {
-            console.log(`getting ${propKey}!`);
-            return Reflect.get(target, propKey, receiver);
-	    },
-        set: function (target, propKey, value, receiver) {
-            console.log(`setting ${propKey}!`);
-            return Reflect.set(target, propKey, value, receiver);
-        }
-    })
     {
+	    var obj = new Proxy({}, {
+		    get: function (target, propKey, receiver) {
+			    console.log(`getting ${propKey}!`);
+			    return Reflect.get(target, propKey, receiver);
+		    },
+		    set: function (target, propKey, value, receiver) {
+			    console.log(`setting ${propKey}!`);
+			    return Reflect.set(target, propKey, value, receiver);
+		    }
+	    });
+	    obj.name = 'zhangsan';
+	    console.log(obj.name);
+	    console.log("-----------------------------------------------");
+
+	    var data = {
+	    	name: 'zhangsan',
+            age: 12
+        };
+	    let keys = ['name', 'age'];
+	    for(let key in data){
+	    	debugger;
+	    	Object.defineProperty(data, key, {
+	    		set: function (newVal) {
+                    console.log('set', newVal)
+			    },
+                get: function () {
+                    console.log('get', data[key]);
+                    return data[key]
+                }
+            })
+        }
+        console.log(data.name);
+	    console.log(data.sex);
+
+    }
+
+    {
+	    console.log("-----------------------------------------------");
 	    //没有handler
 	    var target = {};
 	    var handler = {};
