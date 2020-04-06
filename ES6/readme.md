@@ -1,0 +1,2 @@
+## proxy和Object.defineProperty区别
+Object.defineProperty无法探测到对象根属性的添加和删除，以及直接给数组下标进行赋值。

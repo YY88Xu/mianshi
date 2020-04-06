@@ -276,7 +276,21 @@
 
 
 
+    {
+        let person={
+            name: 'zhangsan',
+            age: 12
+        };
+        Object.defineProperty(person, 'name', {
+            get: function(){
+                return person.name;
+            },
+            set: function(val){
+                person.name = val;
+            }
+        });
 
+    }
 
 
 

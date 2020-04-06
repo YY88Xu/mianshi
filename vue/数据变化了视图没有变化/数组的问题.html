@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p v-for="(item,index) in trees" @click="changeMe(index)">这个是{{item}}</p>
+    <p>参考： https://www.cnblogs.com/YuKiee/p/9681151.html</p>
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            trees:['a','b','c']
+        },
+        methods:{
+            changeMe(idx){
+                this.trees[idx] = 'x'//无响应
+                //this.$set(this.trees,idx,'x')//有响应
+                //this.trees.splice(idx,1,'x')//有响应
+
+            }
+        }
+    })
+</script>
+</html>

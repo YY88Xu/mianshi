@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同级元素重叠</title>
+    <style>
+        html *{
+            padding:0;
+            margin:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+        }
+        .one{
+            background-color: red;
+            margin-bottom:20px;
+        }
+        .two{
+            background-color: blue;
+            margin-top:30px;
+        }
+    </style>
+</head>
+<body>
+<div class="one"></div>
+123
+<div class="two"></div>
+</body>
+</html>

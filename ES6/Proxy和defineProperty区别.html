@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy和defineProperty的区别</title>
+</head>
+<body>
+</body>
+<script>
+    {
+        var vm = {};
+        var data = {
+            name: 'zhangsan',
+            age: 12
+        };
+        for(let key in data){
+            Object.defineProperty(vm, key, {
+                set: function(newVal){
+                    console.log('set', newVal);
+                },
+                get: function () {
+                    console.log('get', data[key]);
+                    return data[key];
+                }
+            })
+        }
+        console.log(data, vm);
+        data.name = 'lisi';
+        data.gender = 'male';
+        console.log(vm.name);   // lisi
+        console.log(vm.gender);  //undefined
+
+        //data中name和age值变化了，vm也会变化；但是data新增的属性，vm却不会动态变化
+    }
+
+    {
+        var data = {
+            name: 'zhangsan',
+            age: 12
+        };
+        var vm = new Proxy(data, {
+            set: function(target, propKey, value, receiver){
+                console.log('set', propKey);
+                return Reflect.set(target,propKey, value, receiver);
+            },
+            get: function (target, propKey, receiver) {
+                console.log('get', propKey);
+                return Reflect.get(target, propKey, receiver);
+            }
+        });
+        console.log(data, vm);
+        data.name = 'lisi';
+        data.gender = 'male';
+        console.log(vm.name);   // lisi
+        console.log(vm.gender);  //undefined
+    }
+
+    {
+        var vm = {};
+        var data = ['Hello', 'ES6'];
+        for(let key in data){
+            Object.defineProperty(vm, key, {
+                set: function(newVal){
+                    console.log('set', newVal);
+                },
+                get: function () {
+                    console.log('get', data[key]);
+                    return data[key];
+                }
+            })
+        }
+        console.log(data, vm);
+        data[2] = 'Xuyuanyuan';
+        console.log(vm[2]);
+        data.length = 0;
+        console.log(data, vm);
+    }
+
+
+
+
+
+
+
+
+</script>
+</html>
