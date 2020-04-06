@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>mvvm</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg"> {{msg}}
+</div>
+<script>
+    /* new Vue() --> observer() --> defineReactive() --> new Dep()
+     --> nodeToFragment() --> compile() --> new watch() --> Dep.target --> watch.update()*/
+    // vue mvvm实现  https://blog.csdn.net/mht1829/article/details/79380422
+    class Vue {
+        constructor(opts) {
+            this.data = opts.data;
+            this.el = opts.el;
+            let data = this.data;
+            let me = this;
+            let el = document.querySelector(this.el);
+            observer(data,this);
+            let dom = nodeToFragment(el,this)
+            el.appendChild(dom);
+        }
+    }
+    // 将el内元素编译成fragment dom 片段
+    function nodeToFragment(node,vm) {
+        let frag = document.createDocumentFragment();
+        let child;
+        while(child = node.firstChild){
+            compile(child,vm);
+            frag.append(child);
+        }
+        return frag;
+    }
+    // 解析指令
+    function compile(node,vm){
+        let reg = /\{\{(.*)\}\}/;
+        if(node.nodeType == 1){ // 元素
+            let attrs = node.attributes;
+            let name = '';
+            for(let i = 0,len = attrs.length; i < len; i++){
+                if(attrs[i].nodeName == 'v-model'){
+                    name = attrs[i].nodeValue;
+                    node.addEventListener('input', e => vm[name] = e.target.value);
+                    node.value = vm[name];
+                    node.removeAttribute('v-model');
+                }
+            }
+            new watch(vm,node,name,'input') //添加监听器
+        }
+        if(node.nodeType==3){ //元素或属性中的文本内容
+            if(reg.test(node.nodeValue)){
+                name = RegExp.$1.trim();
+                console.log(name)
+                nodeType = 'text';
+                new watch(vm,node,name,'text');
+            }
+        }
+    }
+    //监听器
+    class watch{
+        constructor(vm,node,name,nodeType){
+            console.log(this)
+            Dep.target = this; //将监听的放在Dep队列里
+            this.name = name;
+            this.node = node;
+            this.vm = vm;
+            this.nodeType = nodeType;
+            this.update(); //第一次update input ，第二次update text
+            Dep.target = null;
+        }
+        update(){
+            this.get();
+            if(this.nodeType == 'text'){
+                this.node.nodeValue = this.value;
+            }
+            if(this.nodeType == 'input'){
+                this.node.value = this.value;
+            }
+        }
+        get(){
+            this.value = this.vm[this.name];
+        }
+    }
+    //observer
+    function observer(data,vm){
+        Object.keys(data).forEach(key => defineReactive(vm,key,data[key]))
+    }
+    function defineReactive(vm,key,val){
+        let dep = new Dep();
+        Object.defineProperty(vm,key,{
+            get(){
+                if(Dep.target){
+                    dep.addSub(Dep.target);
+                }
+                return val;
+            },
+            set(newValue){
+                if(newValue == val) return;
+                val = newValue;
+                dep.notify();
+            }
+        })
+    }
+    class Dep{
+        constructor(){
+            this.subs = [];
+        }
+        addSub(sub){
+            this.subs.push(sub)
+        }
+        notify(){
+            this.subs.forEach(sub => sub.update())
+        }
+    }
+</script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            'msg':'hello word'
+
+        }
+    })
+</script>
+</body>
+</html>

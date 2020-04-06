@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去除浮动</title>
+    <style type="text/css">
+        .father {
+            width: 100%;
+            background: #ececdd;
+            display: block;
+            margin-top:40px;
+        }
+
+        .father:after {
+            content: "";
+            clear: both;
+        }
+
+        .son {
+            height: 100px;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            background: #d3cff7;
+        }
+    </style>
+</head>
+<body>
+<div class="father">
+    <div class="son">
+        son
+    </div>
+</div>
+<div class="father">
+    <div class="son">
+        son
+    </div>
+</div>
+</body>
+</html>

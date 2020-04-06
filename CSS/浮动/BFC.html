@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC</title>
+    <style>
+        .box {
+            width: 100%;
+            border: 1px solid;
+        }
+        .bfc-float-box1 {
+            float: left;
+            width: 100%;
+            background: #ececdd;
+            margin-bottom: 10px;
+        }
+
+        .bfc-float-box2 {
+            float: left;
+            width: 100%;
+            background: #f9d7f7;
+            margin-top: 20px;
+        }
+
+
+        .bfc-inner-box1 {
+            margin-bottom: 30px;
+            width: 100px;
+            height: 100px;
+            background: #f7c3c3;
+        }
+
+        .bfc-inner-box2 {
+            margin-top: 50px;
+            width: 100px;
+            height: 100px;
+            background: #d3cff7;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" style="width: 100%;">
+    <div class="bfc-float-box1">
+        <div class="bfc-inner-box1"></div>
+    </div>
+    <div class="bfc-float-box2">
+        <div class="bfc-inner-box2"></div>
+    </div>
+</div>
+
+</body>
+</html>

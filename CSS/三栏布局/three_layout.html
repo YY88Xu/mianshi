@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三栏布局</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            min-height: 100px;
+        }
+        section{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <style>
+        .left{
+            float: left;
+            width: 200px;
+            background-color: red;
+        }
+        .right{
+            float: right;
+            width: 200px;
+            background-color: blue;
+        }
+        .center{
+            background-color: yellow;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+    </style>
+    <article class="float-wrap" style="border: 1px solid;">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center">
+            <h1>float方式实现</h1>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+        </div>
+    </article>
+</section>
+<section>
+    <style>
+        .flex-box{
+            display: flex;
+        }
+        .item-left{
+            width: 200px;
+            background-color: red;
+        }
+        .item-center{
+            background-color: yellow;
+            flex-grow: 1;
+        }
+        .item-right{
+            width: 200px;
+            background-color: blue;
+        }
+    </style>
+    <articel class="flex-box">
+        <div class="item-left"></div>
+        <div class="item-center">
+            <h1>flexbox解决方案</h1>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+        </div>
+        <div class="item-right"></div>
+    </articel>
+</section>
+<section>
+    <style>
+        .table-layout{
+            display: table;
+            width: 100%;
+        }
+        .table-left{
+            width:200px;
+            background-color: red;
+            display: table-cell;
+        }
+        .table-right{
+            width:200px;
+            background-color: blue;
+            display: table-cell;
+        }
+        .table-center{
+            background-color: yellow;
+            display: table-cell;
+        }
+    </style>
+    <article class="table-layout">
+        <div class="table-left"></div>
+        <div class="table-center">
+            <h1>table解决方案</h1>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+        </div>
+        <div class="table-right"></div>
+    </article>
+</section>
+<section>
+    <style>
+        .grid-wrap{
+            display: grid;
+            grid-template-columns: 200px auto 200px;
+        }
+        .grid-left{
+            background-color: red;
+        }
+        .grid-center{
+            background-color: yellow;
+        }
+        .grid-right{
+            background-color: blue;
+        }
+    </style>
+    <articel class="grid-wrap">
+        <div class="grid-left">
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+        </div>
+        <div class="grid-center">
+            <h1>grid解决方案</h1>
+        </div>
+        <div class="grid-right"></div>
+    </articel>
+</section>
+<section>
+    <style>
+        .wrap{
+            position: relative;
+        }
+        .wrap-left{
+            position: absolute;
+            left:0;
+            width: 200px;
+            background-color: red;
+        }
+        .wrap-right{
+            position: absolute;
+            width: 200px;
+            background-color: blue;
+            right: 0;
+        }
+        .wrap-center{
+            background-color: yellow;
+            position: absolute;
+            left: 200px;
+            right:200px;
+        }
+    </style>
+    <article class="wrap">
+        <div class="wrap-left">
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+            <p>高度变化</p>
+        </div>
+        <div class="wrap-center">
+            <h1>position解决方案</h1>
+        </div>
+        <div class="wrap-right"></div>
+    </article>
+</section>
+</body>
+</html>

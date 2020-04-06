@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="jsonText.text">
+        <div>{{message}}</div>
+        {{jsonText.text}}
+        <p>ceshi</p>
+        <p>https://juejin.im/post/5b4efdd86fb9a04fe0180af2</p>
+        <p>https://segmentfault.com/a/1190000006599500</p>
+    </div>
+</body>
+<script src="compile.js"></script>
+<script src="observer.js"></script>
+<script src="vue.js"></script>
+<script src="watcher.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            message: '123',
+            jsonText: {
+                text: 'Hello world'
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>高度塌陷</title>
+    <style>
+        .box{
+            border: 2px solid #c9f6f2;
+            width: 100%;
+            background: #ececdd;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+        }
+        .float {
+            width: 25%;
+            height: 100px;
+            float: left;
+            background: #d3cff7;
+            margin:10px;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box clearfix">
+    <div class="float"></div>
+    <div class="float"></div>
+    <div class="float"></div>
+</div>
+</body>
+</html>
