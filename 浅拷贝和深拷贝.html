@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浅拷贝和深拷贝</title>
+</head>
+<body>
+参考：https://blog.csdn.net/weixin_37719279/article/details/81240658
+</body>
+<script>
+    let obj = {a:1, arr: [2,3]};
+    function shallowCopy(src) {
+        let dist = {};
+        for(let prop in src){
+            dist[prop] = src[prop];
+        }
+        return dist;
+    }
+
+    let dist = shallowCopy(obj);
+    obj.arr.push(4);
+    console.log(obj, dist);
+
+    function deepCopy(src) {
+        if(typeof src == 'object'){
+            let dist;
+            if(Array.isArray(src)){
+                dist = [];
+            }else{
+                dist = {};
+            }
+            for(let prop in src){
+                let tmp = src[prop];
+                if(typeof tmp == 'object'){
+                    dist[prop] = deepCopy(tmp);
+                }else{
+                    dist[prop] = src[prop];
+                }
+            }
+            return dist;
+        }else{
+            return src;
+        }
+    }
+
+    let tmp = deepCopy(obj);
+    obj.arr.push(5);
+
+    console.log(obj, tmp)
+
+
+
+</script>
+</html>

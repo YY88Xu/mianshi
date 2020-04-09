@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+
+  <style>
+    #printContent{
+      width: 80%;
+      font-size: 20px;
+    }
+    .i-table{
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    .i-table th{
+      background-color: #348EED;
+      color: white;
+    }
+    .i-table th, tr{
+      height: 55px;
+      line-height: 55px;
+      border: 1px solid black;
+    }
+    .i-table td{
+      border: 1px solid black;
+    }
+
+  </style>
+</head>
+<body>
+<div id="app">
+  <input type="button" value="打印此页面" @click="printHtml" />
+  <iframe style="display: none" frameborder="0" id="printIframe" name="printIframe" ></iframe>
+  <!--startprint-->
+  <div id="printContent" style="display: none">
+    <p>发货出库单：单据日期：2020/04/07</p>
+    <table class="i-table">
+      <th>序号</th><th>商品</th><th>出库数量</th>
+      <tr v-for="(item,idx) in mockTable">
+        <td>{{idx+1}}</td><td>{{item.goodsName}}</td><td>{{item.operStock}}</td>
+      </tr>
+    </table>
+  </div>
+  <!--endprint-->
+
+</div>
+
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    methods: {
+      printHtml() {
+        let columns = ['序号', '商品', '出库数量'];
+        let doc = document.getElementById("printIframe").contentDocument || document.frames["printIframe"].document;
+        let content = "<table style='border-collapse: collapse;width:100%;border:1px solid black;text-align: center;'><tr style='border:1px solid black;height: 55px;line-height: 55px'>";
+        for(let col of columns){
+          content+="<th>"+col+"</th>";
+        }
+        content+="</tr>";
+
+        let mockTable = this.mockTable;
+        let index = 1;
+        for(let mock of mockTable){
+          content+="<tr style='border:1px solid black;height: 55px;line-height: 55px;'><td>" + index + "</td>"
+            +"<td>" + mock.goodsName + "</td>"
+            +"<td>" + mock.operStock + "</td></tr>";
+          index++;
+        }
+
+        content+="</table>"
+        doc.body.innerHTML = content;
+        document.getElementById('printIframe').contentWindow.print();
+      },
+
+      printpage() {
+        let oldStr = window.document.body.innerHTML; // 获取body的内容
+        let start = "<script>"; // 开始打印标识, 17个字符
+        let newStr = oldStr.substring(0, oldStr.indexOf(start)); // 截取开始打印标识和结束打印标识之间的内容
+        window.document.body.innerHTML = newStr; // 把需要打印的指定内容赋给body
+        window.print(); // 调用浏览器的打印功能打印指定区域
+        window.document.body.innerHTML = oldStr; // body替换为原来的内容
+      }
+    },
+    data: {
+      mockTable: [
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>
