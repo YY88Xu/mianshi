@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直水平居中</title>
+    <style>
+        .wrap{
+            background: red;
+            position: relative;
+            width: 300px;
+            height: 400px;
+        }
+        .inner1{
+            background: white;
+            position: absolute;
+            /* 50% 宽度是相对于父级元素的宽度*/
+            left: 50%;
+            top: 50%;
+            /* 这里的50%是相对于自身的宽度 */
+            transform: translate(-50%,-50%);
+        }
+        .inner2{
+            background: white;
+            position: absolute;
+            heigth: 90px;
+            width: 180px;
+            top: 50%;
+            left: 50%;
+            /*transform: translate(-90px, -30px);*/
+            /* 或者 */
+            margin-left: -90px;
+            margin-top: -30px;
+        }
+        .inner3{
+            background: white;
+            height: 90px;
+            width: 180px;
+            position: absolute;;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .inner4{
+            background: white;
+            height: 90px;
+            width: 180px;
+            position: absolute;;
+            top: calc(50% - 30px);
+            left: calc(50% - 90px);
+        }
+        .wrap-flex{
+            display: flex;
+            background: red;
+            width: 300px;
+            height: 400px;
+            /*
+                justify-content: flex-start  flex-end  center  space-between space-around
+            */
+            justify-content: center;
+            align-items: center;
+        }
+        .inner5{
+            background: white;
+            margin: auto 20px;
+        }
+        .wrap-tableCell{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            background: red;
+            width: 300px;
+            height: 400px;
+        }
+        .inner6{
+            background: white;
+            margin: auto 20px;
+        }
+    </style>
+</head>
+<body>
+<p>
+    参考：https://www.jianshu.com/p/907f99004c3e
+</p>
+<div class="wrap">
+    <span class="inner1">方法一: inner1的高度和宽度都不确定；absolute+transform</span>
+</div>
+<br>
+<div class="wrap">
+    <div class="inner2">
+        方法二：inner2的高度和宽度确定；absolute+transform/margin
+    </div>
+</div>
+<br>
+<div class="wrap">
+    <div class="inner3">
+        方法三：inner3的高度和宽度确定；absolute+transform/margin
+    </div>
+</div>
+<br>
+<div class="wrap">
+    <div class="inner4">
+        补充：inner4的高度和宽度确定；absolute + calc
+    </div>
+</div>
+<br>
+<div class="wrap-flex">
+    <div class="inner5">
+        方法四：inner5的高度和宽度确定；flex
+    </div>
+</div>
+<br>
+<div class="wrap-tableCell">
+    <div class="inner6">
+        方法五：table-cell；不能用百分比
+    </div>
+</div>
+</body>
+</html>

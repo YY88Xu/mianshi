@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+<body>
+<div>
+    https://www.jianshu.com/p/c1ee12a328d2/
+    https://juejin.im/post/5b0238f66fb9a07aca7a74ba#heading-2
+</div>
+</body>
+<script>
+    var a = 100;
+    var functionName = function () {
+    	console.log(this);
+        this.a = 10;
+    }
+    functionName();
+    console.log(a);
+    var funcs = [];
+    // for(var i=0;i<3;i++){
+    // 	funcs[i] = (function(i){
+		//     return function(){
+		// 	    console.log(i);
+    //         }
+	 //    })(i);
+    // }
+    for(let i=0;i<3;i++){
+    	funcs[i] = function(){
+    		console.log(i);
+        }
+    }
+    funcs[0]();
+
+    {
+    	var hh = 'Hello world';
+    }
+    (function(){
+        var aa = 'Hello JS';
+    })();
+    console.log(hh);
+    console.log(aa);
+</script>
+</html>
