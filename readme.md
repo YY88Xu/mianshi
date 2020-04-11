@@ -42,3 +42,7 @@ stick
 rem怎么实现
 
 https://www.cnblogs.com/zhouwenfan-home/p/10469573.html
+
+stick
+promise
+less
