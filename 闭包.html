@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+
+</body>
+<script>
+    function create_counter(initial){
+        var x = initial || 0;
+        return function () {
+            x += 1;
+            return x;
+        }
+    }
+    var c1 = create_counter(10);
+    console.log(c1());
+</script>
+</html>

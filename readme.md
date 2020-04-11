@@ -46,3 +46,4 @@ https://www.cnblogs.com/zhouwenfan-home/p/10469573.html
 stick
 promise
 less
+nuxt: https://juejin.im/post/5cc81e1a6fb9a032414f695b#comment
