@@ -47,3 +47,8 @@ stick
 promise
 less
 nuxt: https://juejin.im/post/5cc81e1a6fb9a032414f695b#comment
+
+https://juejin.im/post/5b03e79951882542891913e8
+
+node有两个框架可以学一下，一个是比较旧的express，很经典，一个是koa
+移动端：https://www.cnblogs.com/PeunZhang/p/3407453.html
