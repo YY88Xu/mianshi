@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>各种top</title>
+    <style>
+        .wrap{
+            width: 1000px;
+            height: 500px;
+            background: red;
+            /* 形成BFC */
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+        .inner{
+            width:500px;
+            height: 200px;
+            background: green;
+            color: white;
+        }
+        .margin-inner{
+            box-sizing: border-box;
+            margin-top: 10%;
+            padding-top:10%;
+        }
+        .trans{
+            padding-left: 100px;
+            padding-right: 100px;
+            transform: translateX(10%);
+        }
+        .bc{
+            width: 400px;
+            height: 600px;
+            border: 1px solid blue;
+            background-size: 10%;
+            background: url("./image/logo.jpeg") no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="margin-inner inner">
+        <p>margin: 10%;相对于父级元素宽度的百分比。</p>
+        <p>padding: 10%; 相对于父级元素宽度的百分比。</p>
+    </div>
+</div>
+
+<div class="wrap">
+    <div class="trans inner">
+        <p>
+            translate(x,y): x y是百分比的时候，是相当于移动的元素的宽+padding
+        </p>
+        <p>
+            (500+100+100) * 10%
+        </p>
+    </div>
+</div>
+
+<div class="bc">
+    https://juejin.im/post/5c70017cf265da2d9b5e1940
+</div>
+</body>
+</html>
