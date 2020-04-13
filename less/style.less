@@ -1,0 +1,91 @@
+html,body{
+  height: 100%;
+  width: 100%;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+//变量 + 嵌套
+@width: 50%;
+
+#header{
+  width: @width;
+  height: calc(100% - @width - 300px);
+  background: red;
+  .navigation{
+    font-size: 20px;
+    .bordered();
+  }
+  .logo{
+    width: 200px;
+    .bordered();
+  }
+}
+
+//混合
+.bordered {
+  border-top: dotted 1px black;
+  border-bottom: solid 2px black;
+}
+#menu{
+  color: #111;
+  .bordered();
+}
+
+ul {
+  border: 1px solid black;
+  li {
+    float: left;
+    width:80px;
+  }
+}
+
+.clearfix{
+  display: block;
+  zoom: 1;
+  &:after{
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+//转义
+@min768: ~"(min-width: 768px)";
+.element{
+  @media @min768{
+    font-size: 1.2rem;
+  }
+}
+//命名空间和访问符
+#bundle(){
+  .button {
+    display: inline-block;
+    background-color: grey;
+    &:hover{
+      background: white;
+    }
+  }
+  .tab{
+    background-color: red;
+  }
+}
+
+a{
+  #bundle.button();
+}
+
+
+
+
+
+
+
+
+
+
+

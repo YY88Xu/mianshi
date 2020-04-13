@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async</title>
+</head>
+<body>
+<div>
+    <h3>async</h3>
+    <p>
+        async函数返回一个Promise对象
+    </p>
+    <h3>await</h3>
+    <p>
+        await后面是一个Promise对象，返回该对象的结果。await的作用之一就是获取后面Promise对象成功状态传递出来的参数。
+    </p>
+    <p>
+        如果不是Promise对象，就直接返回对应的值。
+    </p>
+    <h3>async await睡眠函数</h3>
+    <p>
+        function sleep(interval){
+            return new Promise(resolve=>{
+                setTimeout(resolve, interval);
+            }
+        }
+        async function one2fiveAsync(){
+            for(let i=1;i<=5;i++){
+                console.log(i);
+                await sleep(1000);
+            }
+            console.log("100", 100);
+        }
+    </p>
+    <p>
+        参考：https://juejin.im/post/5a9516885188257a6b061d72
+    </p>
+</div>
+</body>
+<script>
+    {
+        async function getTitle(url) {
+            let response = await fetch(url);
+            let html = await response.text();
+            return html.match(/<title>([\s\S]+)<\/title>/i)[1];
+        }
+
+        // getTitle('https://tc39.github.io/ecma262/').then(res=>{
+        //     console.log(res)
+        // })
+    }
+    {
+        function sleep(interval) {
+            return new Promise(resolve => {
+                setTimeout(resolve, interval);
+            })
+        }
+
+// 用法
+        async function one2FiveInAsync() {
+            for(let i = 1; i <= 5; i++) {
+                console.log(i);
+                await sleep(1000);
+            }
+            console.log("100", 100);
+        }
+        one2FiveInAsync();
+        console.log("1000")
+    }
+    {
+        const getJSON = function (url) {
+            return new Promise(function (resolve, reject) {
+                const client = new XMLHttpRequest();
+                client.onreadystatechange = function () {
+                    if(client.readyState === 4){
+                        if(client.status == 200){
+                            resolve(client.responseText);
+                        }else{
+                            reject(client.statusText);
+                        }
+
+                    }
+                };
+                client.open("GET", url, false);
+                client.send();
+            })
+        }
+
+        async function test(arr) {
+            for(let i of arr){
+               let res =  await getJSON('/process_get');
+            }
+             // console.log(100);
+        }
+        //test([1,2,3]);
+        //请写出输出内容
+
+    }
+
+</script>
+</html>

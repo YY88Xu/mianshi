@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="button" value="发货出库单" @click="printHtml" />
+  <iframe style="display: none;" frameborder="0" id="printIframe" ></iframe>
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    methods: {
+      //打印配货单
+      printHtml2() {
+        let columns = ['序号', '商品', '数量'];
+        let doc = document.getElementById("printIframe").contentDocument || document.frames["printIframe"].document;
+        let goods = this.goods;
+        let content="";
+        let index = 1;
+        for(let item of goods){
+          content += "<h3>团长序号：" + index+ "</h3>";
+          content += "<h3>社区店：" + item.communityName+ "</h3>";
+          content += "<h3>团长信息：" + item.name+"  "+item.phoneNo+ "</h3>";
+          content += "<h3>提货地址：" + item.deliveryAddress+ "</h3>";
+          let memberGoodsReceiptInfo = item.memberGoodsReceiptInfo;
+          content += "<table style='page-break-after:always;border-collapse: collapse;width:100%;border:1px solid black;text-align: center;'><tr style='border:1px solid black;height: 55px;line-height: 55px'>";
+          for(let col of columns){
+            content+="<th style='border:1px solid black;'>"+col+"</th>";
+          }
+          content+="</tr>";
+          for(let member of memberGoodsReceiptInfo){
+            let orderGoodsInfo = member.orderGoodsInfo;
+
+            let ii=1;
+            for(let gInfo of orderGoodsInfo){
+              if(ii==1){
+                content+="<tr style='border:1px solid black;height: 55px;line-height: 55px;'><td style='border:1px solid black;' rowspan='" +orderGoodsInfo.length+
+                        "'>" + member.receiverMobile + "</td>";
+              }else{
+                content+="<tr style='border:1px solid black;height: 55px;line-height: 55px;'>";
+              }
+
+              content+="<td style='border:1px solid black;'>" + gInfo.goodsName + "</td>"
+                      +"<td style='border:1px solid black;'>" + gInfo.quantity + "</td>";
+              content+="</tr>";
+              ii++;
+            }
+
+          }
+          content+="</table>"
+          index++;
+        }
+
+        doc.body.innerHTML = content;
+        document.getElementById('printIframe').contentWindow.print();
+      },
+      //打印分发单
+      printHtml() {
+        let columns = ['用户手机号', '商品', '数量'];
+        let doc = document.getElementById("printIframe").contentDocument || document.frames["printIframe"].document;
+        let goods = this.goods;
+        let content="";
+        let index = 1;
+        for(let item of goods){
+          content += "<h3>团长序号：" + index+ "</h3>";
+          content += "<h3>社区店：" + item.communityName+ "</h3>";
+          content += "<h3>团长信息：" + item.name+"  "+item.phoneNo+ "</h3>";
+          content += "<h3>提货地址：" + item.deliveryAddress+ "</h3>";
+          let goodsReceiptInfo = item.goodsReceiptInfo;
+          content += "<table style='page-break-after:always;border-collapse: collapse;width:100%;border:1px solid black;text-align: center;'><tr style='border:1px solid black;height: 55px;line-height: 55px'>";
+          for(let col of columns){
+            content+="<th>"+col+"</th>";
+          }
+          content+="</tr>";
+          let ii = 1;
+          for(let receipt of goodsReceiptInfo){
+            content+="<tr style='border:1px solid black;height: 55px;line-height: 55px;'><td>" + ii + "</td>"
+                    +"<td>" + receipt.goodsName + "</td>"
+                    +"<td>" + receipt.quantity + "</td></tr>";
+            ii++;
+          }
+          content+="</table>"
+          index++;
+        }
+
+        doc.body.innerHTML = content;
+        document.getElementById('printIframe').contentWindow.print();
+      },
+      //打印发货单
+      printHtml1() {
+        let columns = ['序号', '商品', '出库数量'];
+        let doc = document.getElementById("printIframe").contentDocument || document.frames["printIframe"].document;
+        let content = "<h3>发货出库单：单据日期：" + this.curDate+ "</h3>";
+        content += "<table style='page-break-after:always;border-collapse: collapse;width:100%;border:1px solid black;text-align: center;'><tr style='border:1px solid black;height: 55px;line-height: 55px'>";
+        for(let col of columns){
+          content+="<th>"+col+"</th>";
+        }
+        content+="</tr>";
+
+        let mockTable = this.mockTable;
+        let index = 1;
+        for(let mock of mockTable){
+          content+="<tr style='border:1px solid black;height: 55px;line-height: 55px;'><td>" + index + "</td>"
+                  +"<td>" + mock.goodsName + "</td>"
+                  +"<td>" + mock.operStock + "</td></tr>";
+          index++;
+        }
+
+        content+="</table>"
+        doc.body.innerHTML = content;
+        document.getElementById('printIframe').contentWindow.print();
+      }
+    },
+    data: {
+      curDate: '2020/04/10',
+      goods: [{
+        "communityName": "自营店铺001",
+        "name": "夏伟",
+        "deliveryAddress": "立新中学西南门",
+        "phoneNo": "13661966284",
+        "memberGoodsReceiptInfo": [{
+          "receiver": "夏",
+          "receiverMobile": "13661966284",
+          "orderGoodsInfo": [{
+            "goodsId": "278727390404939776",
+            "goodsSkuId": "278727390434299904",
+            "goodsName": "【特仑苏经典纯牛奶】250ml*16盒",
+            "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+            "unit": "箱",
+            "quantity": 1},
+            {
+              "goodsId": "278727390404939776",
+              "goodsSkuId": "278727390434299904",
+              "goodsName": "冰红茶",
+              "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+              "unit": "箱",
+              "quantity": 12}
+          ]
+        },
+          {
+            "receiver": "夏",
+            "receiverMobile": "13816689340",
+            "orderGoodsInfo": [{
+              "goodsId": "278727390404939776",
+              "goodsSkuId": "278727390434299904",
+              "goodsName": "【特仑苏经典纯牛奶】250ml*16盒",
+              "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+              "unit": "箱",
+              "quantity": 1},
+              {
+                "goodsId": "278727390404939776",
+                "goodsSkuId": "278727390434299904",
+                "goodsName": "冰红茶",
+                "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+                "unit": "箱",
+                "quantity": 12}
+            ]
+          }
+        ],
+        "goodsReceiptInfo": [
+                {
+                  "goodsId": "278727390404939776",
+                  "goodsSkuId": "278727390434299904",
+                  "goodsName": "【特仑苏经典纯牛奶】250ml*16盒",
+                  "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+                  "unit": "箱",
+                  "quantity": 1
+                },
+                {
+                  "goodsId": "278727390404939776",
+                  "goodsSkuId": "278727390434299904",
+                  "goodsName": "冰红茶",
+                  "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+                  "unit": "箱",
+                  "quantity": 12
+                }
+          ]
+      },
+        {
+          "communityName": "自营店铺002",
+          "name": "夏伟2",
+          "deliveryAddress": "立新中学西南门",
+          "phoneNo": "13661966284",
+          "goodsReceiptInfo": [{
+            "goodsId": "278727390404939776",
+            "goodsSkuId": "278727390434299904",
+            "goodsName": "【特仑苏经典纯牛奶】250ml*16盒",
+            "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+            "unit": "箱",
+            "quantity": 1
+          }],
+          "memberGoodsReceiptInfo": [{
+            "receiver": "夏2",
+            "receiverMobile": "13661966284",
+            "orderGoodsInfo": [{
+              "goodsId": "278727390404939776",
+              "goodsSkuId": "278727390434299904",
+              "goodsName": "【特仑苏经典纯牛奶】250ml*16盒",
+              "resourceUrl": "https://bbmall-1259310604.cos.ap-shanghai.myqcloud.com/goods/66345C6CFC934593BB073B6C5D9B77B3.jpg",
+              "unit": "箱",
+              "quantity": 1
+            }]
+          }]
+        }
+      ],
+      mockTable: [
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品4.4',
+          'operStock': 1,
+          'statusDesc': '等待核验'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        },
+        {
+          'goodsName': '订单测试专用商品2',
+          'operStock': 2,
+          'statusDesc': '已发货'
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>

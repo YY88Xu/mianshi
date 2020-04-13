@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+</head>
+<body>
+<div>
+    forEach和map类似，它也把每个元素依次作用于传入的函数，但不会返回新的数组。
+    forEach常用于遍历数组，因此，传入的函数不需要返回值；即使有返回值，forEach函数返回的也是undefined
+</div>
+</body>
+<script>
+    //字符串转整数
+    function string2int(s){
+        let arr = s.split("");
+        let arr2 = arr.map(function(x){
+            return x*1;
+        })
+        let result = arr2.reduce(function(x,y){
+            return x*10+y;
+        });
+        return result;
+    }
+    //首字母大写，其他小写的规范名字
+    function normalize(arr) {
+        let result = arr.map(function(item){
+            let tmpArr = item.split("");
+            let newTmp = tmpArr.map(function(val, index){
+                if(index==0){
+                    return val.toUpperCase();
+                }else{
+                    return val.toLowerCase();
+                }
+            })
+            return newTmp.join("");
+        })
+        return result;
+    }
+
+    //filter去重
+    let cfArr = [1,2,2,3,1,5,6,7];
+    let fArr = cfArr.filter(function(val, indx, self){
+        return self.indexOf(val)===indx;
+    })
+    console.log(fArr);
+    //筛选素数
+    function get_primes(arr) {
+        return arr.filter(function (val) {
+            let flag = false;
+            for(let i=1;i<val;i++){
+                if(val%i==0){
+                    flag = true;
+                }
+            }
+            if(!flag){
+                return val;
+            }
+        })
+    }
+    console.log([10, 20, 1, 2].sort());
+    let ttt = [10, 20, 1, 2].forEach(item=>{
+        return item;
+    });
+    console.log(ttt);
+</script>
+</html>

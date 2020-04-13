@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>链表</title>
+</head>
+<body>
+<div>
+    链表：https://www.cnblogs.com/tdws/p/6033209.html
+    双向链表： https://segmentfault.com/a/1190000008708991
+</div>
+</body>
+<script>
+    {
+        //单向链表
+        let Node = function (element) {
+            this.element = element;
+            this.next = null;
+        }
+        class LinkedList{
+            constructor(){
+                this.length = 0;
+                this.head = null;
+            }
+            getElementAt(position){
+                if(position<0||position>=this.length){
+                    return null;
+                }
+                let current = this.head;
+                for(let i=0;i<position;i++){
+                    current = current.next;
+                }
+                return current;
+            }
+            append(element){
+                let node = new Node(element);
+                if(this.head===null) {
+                    this.head = node;
+                } else {
+                    let current = this.getElementAt(this.length-1);
+                    current.next = node;
+                }
+                this.length++;
+            }
+            insert(postion, element){
+                if(postion<0||postion>=this.length){
+                    return false;
+                }
+                let node = new Node(element);
+                let current = this.getElementAt(postion);
+                let tmp = current.next;
+                current.next = node;
+                node.next = tmp;
+                this.length++;
+            }
+        }
+
+        let linkedList = new LinkedList();
+        linkedList.append(100);
+        linkedList.append(12);
+        linkedList.append(13);
+        linkedList.append(14);
+        console.log(linkedList);
+    }
+
+    {
+        //双向链表
+        let Node = function (element) {
+            this.previous = null;
+            this.element = element;
+            this.next = null;
+        }
+
+        class DoubleLinkedList{
+            constructor(){
+                this.first = null;
+                this.last = null;
+            }
+            append(node){
+                if(this.first==null){
+                    this.first = node;
+                    this.last = node;
+                }else{
+                    let lastNode = this.last;
+                    node.next = this.first;
+                    node.previous = lastNode;
+                    lastNode.next = node;
+                    this.last = node;
+                }
+            }
+        }
+
+        let first = new Node(100);
+        let first2 = new Node(200);
+        let first3 = new Node(300);
+        let doubleLinkedList = new DoubleLinkedList();
+        doubleLinkedList.append(first);
+        doubleLinkedList.append(first2);
+        doubleLinkedList.append(first3);
+        console.log(doubleLinkedList);
+    }
+
+</script>
+</html>

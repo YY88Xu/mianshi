@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <p>https://www.jianshu.com/p/f31744e423eb</p>
+    <div>
+        二分查找的时间复杂度是 O(logn)
+    </div>
+</div>
+</body>
+<script>
+    function binarySearch(arr, x) {
+        let start = 0;
+        let end = arr.length-1;
+        while (start<=end){
+            let middle = parseInt((start+end)/2);
+            let tmp = arr[middle];
+            if(tmp>x){
+                end = middle;
+            }else if(tmp<x){
+                start = middle;
+            }else{
+                return middle;
+            }
+        }
+        return -1;
+    }
+    let arr = [1,12,23,24,34,45,52,67,73,84];
+    console.log(binarySearch(arr,34));
+
+    function gcd(m,n) {
+        while (n!=0){
+            let rem = m%n;
+            m = n;
+            n = rem;
+        }
+        return m;
+    }
+    console.log(15,5);
+    arr[1]=120;
+    console.log(arr);
+</script>
+</html>
