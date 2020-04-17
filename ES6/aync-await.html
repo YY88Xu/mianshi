@@ -17,26 +17,50 @@
          console.log(arr)
     }
     test();
+    console.log("===========================================")
+
+    async function test1(){
+	    const names = ['1', '2']
+	    for (const name of names) {
+		    const column = await leadsService(name)
+		    console.log(column)
+	    }
+	    console.log(arr)
+    }
+    test1();
+
 
     function leadsService(){
         return 1;
     }
 
-    const showColumnInfo = async() => {
-        console.time('showColumnInfo')
+    // const showColumnInfo = async() => {
+    //     console.time('showColumnInfo')
+    //
+    //     const names = ['qianduanzhidian', 'FrontendMagazine']
+    //     for (const name of names) {
+    //         const column = await getZhihuColumn(name)
+    //         console.log(column)
+    //     }
+    //     console.timeEnd('showColumnInfo') // 4757.181ms
+    // }
 
-        const names = ['qianduanzhidian', 'FrontendMagazine']
-        for (const name of names) {
-            const column = await getZhihuColumn(name)
-            console.log(column)
-        }
-        console.timeEnd('showColumnInfo') // 4757.181ms
+    async function showColumnInfo(){
+	    console.time('showColumnInfo')
+
+	    const names = ['qianduanzhidian', 'FrontendMagazine']
+	    for (const name of names) {
+		    const column = await getZhihuColumn(name)
+		    console.log(column)
+	    }
+	    console.log("123")
+	    console.timeEnd('showColumnInfo') // 4757.181ms
     }
 
     function getZhihuColumn(name){
         return name;
     }
-    showColumnInfo()
+   //showColumnInfo()
 
 </script>
 </html>
