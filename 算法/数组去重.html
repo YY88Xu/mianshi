@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+</head>
+<body>
+</body>
+<script>
+    let arr = [3,3,4,23,1,12,6,5,5];
+    let result = arr.filter((item,index,self)=>self.indexOf(item)===index);
+    console.log(result);
+
+    let result2 = result.sort((a,b)=>a-b);
+    console.log(result2);
+</script>
+</html>
