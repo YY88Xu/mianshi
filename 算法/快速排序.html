@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速排序</title>
+</head>
+<body>
+</body>
+<script>
+    function quickSort(arr) {
+    	if(arr.length==0) return [];
+        let pirot = arr.pop();
+        let left = [], right = [];
+        arr.forEach(item=>{
+        	if(item>pirot){
+        		right.push(item);
+            }else{
+        		left.push(item);
+            }
+        })
+        return quickSort(left).concat(pirot, quickSort(right));
+    }
+    // let arr = [8, 4, 5, 23, 4,56,7,12];
+    // let r = quickSort(arr);
+    //console.log(r);
+
+    //K最大
+    function quickSortK(arr, k) {
+	    if(arr.length==1) return arr[0];
+	    let pirot = arr.pop();
+	    let left = [], right = [];
+	    arr.forEach(item=>{
+		    if(item>pirot){
+			    right.push(item);
+		    }else{
+			    left.push(item);
+		    }
+	    });
+	    if(left.length-1>=(arr.length-k)){
+		    return quickSortK(left, k-right.length);
+        }else{
+		    return quickSortK(right, k);
+        }
+    }
+    let arr = [1, 2, 3, 4, 5, 6];
+    console.log(quickSortK(arr,2));
+
+    function quickSortRecurison(arr) {
+        if(!arr || arr.length<2) return arr;
+        const pivot = arr.pop();
+        let left = arr.filter(item => item < pivot);
+        let right = arr.filter(item => item >= pivot);
+        return quickSortRecurison(left).concat(pivot, quickSortRecurison(right));
+    }
+
+    //console.log(quickSortRecurison(arr));
+</script>
+</html>
