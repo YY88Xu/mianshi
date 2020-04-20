@@ -5,7 +5,7 @@
     function setRemUnit() {
         var domEI = document.documentElement;
         var ratio = 18.75;
-        var viewWidth = docEI.getBoundingClientRect().width || window.innerWidth;
+        var viewWidth = domEI.getBoundingClientRect().width || window.innerWidth;
         domEI.style.fontSize = viewWidth / ratio + 'px';
     }
 })();

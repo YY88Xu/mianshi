@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+<body>
+<div id="app"><p>倒计时：<count-down></count-down></p></div>
+</body>
+<script>
+    Vue.component('countDown',{
+        props: {
+            num: {
+                type: Number,
+                default: 1000
+            }
+        },
+        template: `
+        <span>{{numVal}}</span>
+        `,
+        mounted(){
+            this.play();
+        },
+        data(){
+            return {
+                timer: null,
+                numVal: this.num
+            }
+        },
+        methods: {
+            play(){
+                if(this.numVal==0){
+                    this.timer = null;
+                } else {
+                    this.timer = setInterval(()=>{
+                        if(this.numVal>0){
+                            this.numVal--;
+                        } else {
+                            clearTimeout(this.timer);
+                        }
+                    }, 1000);
+                }
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+
+    })
+</script>
+</html>

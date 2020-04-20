@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>0418平安面试</title>
+    <style>
+        .vip{
+            color: red;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div>
+    平安面试是给我这上半年的面试画下了一个完美的句号。再一次失败。
+    分析这次失败的原因是可能技术栈不一致，对方用的是react。面试官有点气势太强了。最根本是我自己太紧张了，一紧张思路容易混乱。
+    我都面试了2个月了，每次面试都会紧张。可能是自己有点不自信，也可能是掌握的知识不够扎实，会出现是是而非，大概可能是，不能
+    十分的自信确定是什么。平时有点眼高手低.<p class="vip">只有敲出来的代码才是自己的。</p>
+</div>
+<script>
+    function print() {
+        for(var i=0;i<5;i++){
+            setTimeout(function () {
+                console.log(i);
+                console.log(new Date())
+            }, 500);
+        }
+    }
+
+    function print() {
+        for(var i=0;i<5;i++){
+            (function () {
+                console.log(i);
+                console.log(new Date())
+            })();
+        }
+    }
+
+    // print();
+    // console.log(i);
+    // console.log(new Date());
+    // 倒计时组件
+    // 字符串统计
+    var arr = [{ a: 1 }, { a: 2 }, { a: 2 }, { a: 1 }, { a: 3 }];
+    var result = [];
+    var obj = {};
+    for(var i=0; i<arr.length;i++){
+        if(!obj[arr[i].a]){
+            obj[arr[i].a] = true;
+        } else {
+            result.push(arr[i]);
+        }
+    }
+    // console.log(result);
+
+    printA();
+    function printA() {
+        console.log("aaa");
+    }
+
+    var printB = () => {
+        console.log("bbb");
+    }
+
+    printB();
+
+    console.log(d);
+
+    printC();
+    var printC = ()=>{
+        console.log("ccc")
+    }
+    var d="124";
+</script>
+</body>
+</html>
