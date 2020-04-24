@@ -6,6 +6,7 @@
         maxWidth = 540,
         minWidth = 320;
     dpr = dpr >= 3 ? 3: (dpr >=2 ? 2 : 1);
+
     //自定义属性
     domEI.setAttribute('data-dpr', dpr);
     domEI.setAttribute('maxWidth', maxWidth);
