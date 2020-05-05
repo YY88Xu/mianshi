@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+        div:after{
+            content: '123'
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <button @click="changeData">change</button>
+    <p>
+        created阶段：实例创建完成，可以访问data、computed、watch、methods上的方法和数据，未挂载到DOM，不能访问$el属性
+    </p>
+    <p>
+        mounted阶段：实例挂载到DOM上，此时可以通过DOM API获取DOM节点，$ref属性可以访问。
+    </p>
+    <p>参考： https://juejin.im/entry/5aee8fbb518825671952308c</p>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+        	msg: 'Hello world'
+        },
+        beforeCreate(){
+	        console.log("beforeCreate....  ", this.msg, this.$el);
+        },
+        created(){
+	        console.log("created....  ", this.msg, this.$el);
+        },
+        beforeMount(){
+	        console.log("beforeMount....  ", this.msg, this.$el);
+        },
+        mounted(){
+	        console.log("mounted....  ", this.msg, this.$el);
+        },
+        beforeUpdate(){
+	        console.log("beforeUpdate....  ", this.msg);
+        },
+        updated(){
+	        console.log("updated....  ", this.msg);
+        },
+        methods: {
+	        changeData(){
+	        	this.msg="Test";
+            }
+        }
+    })
+</script>
+</html>
