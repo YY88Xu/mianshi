@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>100ms</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box" class="box"></div>
+</body>
+<script>
+    var boxEI = document.getElementById('box');
+    var startTime = 0;
+
+    boxEI.addEventListener('mouseover', function () {
+	    console.log('mouseover')
+    }, false);
+    boxEI.addEventListener('mousedown', function () {
+	    console.log('mousedown')
+    }, false);
+    boxEI.addEventListener('touchstart', function () {
+	    startTime = Date.now();
+	    console.log('touchstart')
+    }, false);
+    boxEI.addEventListener('mouseup', function () {
+	    console.log('mouseup')
+    }, false);
+    boxEI.addEventListener('click', function () {
+        console.log('click')
+        console.log(Date.now()-startTime);
+    }, false)
+    boxEI.addEventListener('touchmove', function () {
+	    console.log('touchmove')
+    }, false);
+    boxEI.addEventListener('touchend', function () {
+	    console.log('touchend')
+    }, false);
+</script>
+</html>
