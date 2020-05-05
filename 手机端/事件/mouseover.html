@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mouseover</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="over" style="background-color:lightgray;padding:20px;width:40%;float:left">
+    <h2 style="background-color:white;">被触发的 Mouseover 事件：<span></span></h2>
+</div>
+<div class="enter" style="background-color:lightgray;padding:20px;width:40%;float:right">
+    <h2 style="background-color:white;">被触发的 Mouseenter 事件：<span></span></h2>
+</div>
+<script>
+	$(document).ready(function(){
+		var x = 0, y=0;
+		$("div.over").mouseover(function(){
+			$(".over span").text(x+=1);
+		});
+		$("div.enter").mouseenter(function(){
+			$(".enter span").text(y+=1);
+		});
+	});
+</script>
+</body>
+</html>
