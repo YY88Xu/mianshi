@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<p>参考：https://www.jianshu.com/p/1b2341df6f50</p>
+<p></p>
+</body>
+<script>
+    var ajax_get = function (url) {
+        return new Promise((resolve, reject) => {
+            const client = new XMLHttpRequest();
+            client.open("GET", url, true);
+            client.onreadystatechange = function () {
+                if(this.readyState !==4 ){
+                    return;
+                }
+                if(this.status === 200){
+                    resolve(this.response);
+                }else{
+                    reject(new Error(this.statusText))
+                }
+            };
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+        })
+    };
+
+    var ajax_post = function (url, params) {
+        return new Promise((resolve, reject) => {
+            const client = new XMLHttpRequest();
+            client.open("POST", url, true);
+            client.onreadystatechange = function () {
+                if(this.readyState !==4 ){
+                    return;
+                }
+                if(this.status === 200){
+                    resolve(this.response);
+                }else{
+                    reject(new Error(this.statusText))
+                }
+            };
+            // client.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            client.setRequestHeader("Content-type","application/json");
+            client.send(JSON.stringify(params));
+        })
+    };
+
+    ajax_get("http://localhost:3000/getAPITest").then(res=>{
+        console.log(res);
+    })
+
+    ajax_post("http://localhost:3000/postAPITest", {id: 'he9o2h4y', page: 1, size: 20}).then(res=>{
+        console.log(res);
+    })
+</script>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>callee</title>
+</head>
+<body>
+<script>
+    let factorial = function (n) {
+        if(n==1){
+            return 1;
+        }else{
+            return arguments.callee(n-1) * n
+        }
+    }
+    console.log(factorial(4));
+
+</script>
+</body>
+</html>

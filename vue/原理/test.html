@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+</body>
+<script>
+    class Dep {
+        constructor() {
+            this.subs = [];
+        }
+        addSub(sub){
+            this.subs.push(sub);
+        }
+        removeSub(sub){
+            remove(this.subs, sub);
+        }
+        depend(){
+            if(window.target){
+                this.addSub(window.target);
+            }
+        }
+
+        notify(){
+            const subs = this.subs.slice();
+            for(let i=0, l=subs.length;i<l;i++){
+                subs[i].update();
+            }
+        }
+    }
+
+    function remove(arr, item) {
+        if(arr.length){
+            const index = arr.indexOf(item);
+            if(index>-1){
+                return arr.splice(index, 1);
+            }
+        }
+    }
+
+    function defineReactive(data, key, val) {
+        if(typeof val==='object'){
+            new Observer(val);
+        }
+        let dep = new Dep();
+        Object.defineProperty(data, key, {
+            enumerable: true,
+            configurable: true,
+            get: function () {
+                dep.depend();
+                return val;
+            },
+            set: function (newVal) {
+                if(val===newVal){
+                    return;
+                }
+                val = newVal;
+                dep.notify();
+            }
+        })
+    }
+
+    class Observer{
+        constructor(value) {
+            this.value = value;
+            if(!Array.isArray(value)){
+                this.walk(value)
+            }
+        }
+        walk(obj){
+            const keys = Object.keys(obj);
+            for(let i=0;i<keys.length;i++){
+                defineReactive(obj, keys[i], obj[keys[i]]);
+            }
+        }
+    }
+
+    const Watcher = function(vm, fn) {
+        debugger;
+        const self = this;
+        this.vm = vm;
+        // 将当前Dep.target指向自己
+        Dep.target = this;
+        // 向Dep方法添加当前Wathcer
+        this.addDep = function(dep) {
+            dep.addSub(self);
+        }
+        // 更新方法，用于触发vm._render
+        this.update = function() {
+            console.log('in watcher update');
+            fn();
+        }
+        // 这里会首次调用vm._render，从而触发text的get
+        // 从而将当前的Wathcer与Dep关联起来
+        this.value = fn();
+        // 这里清空了Dep.target，为了防止notify触发时，不停的绑定Watcher与Dep，
+        // 造成代码死循环
+        Dep.target = null;
+    }
+
+</script>
+</html>

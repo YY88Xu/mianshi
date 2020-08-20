@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+</head>
+<body>
+</body>
+<script>
+    //定义
+    let map1 = new Map();
+    let map2 = new Map([['name', 'zs'], ['age', 14]]);
+    let obj = {
+        name: 'zs',
+        age: '44',
+        [Symbol.iterator]: function () {
+            return {
+                next: function () {
+                    return {
+                        value: 1,
+                        done: true
+                    }
+                }
+            }
+        }
+    };
+    console.log(map1 instanceof Map, map1);    // true
+    console.log(typeof map1);                 //object
+    console.log(map2.get('name'), map2.get('name2'));  //zs   undefined
+    console.log(obj.name, obj.name2);       //zs   undefined
+
+    console.log(map2.has('name'));
+    console.log('name' in obj);
+
+    map2.set('gender', 'male');
+    obj.gender = 'male';
+
+    map2.delete('gender');
+    delete obj.gender;
+    obj.address = 'shanghai';
+    obj.address = undefined;
+
+    console.log(map2, obj);
+    console.log(map2.size, Object.keys(obj).length);
+
+    for(let t of obj){
+        console.log(t);
+    }
+</script>
+</html>

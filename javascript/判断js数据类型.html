@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>判断js数据类型</title>
+</head>
+<body>
+</body>
+<script>
+    // 方法一 typeof
+    {
+        const a = "123";
+        const b = 12;
+        const d = false;
+        let e = null;
+        console.log(typeof a);
+        console.log(typeof b);
+        console.log(typeof c);
+        console.log(typeof d);
+        console.log(typeof e);
+    //    1、null为 'object'; 2、对象和数组都是 'object'
+    }
+    console.log("---------------------------------------");
+
+    //方法二：instanceof
+    {
+        const obj = {name: 'zs', age: 12};
+        const arr = [1,2,3,4];
+        console.log(obj instanceof Object);
+        console.log(arr instanceof Array);
+    }
+    console.log("---------------------------------------");
+
+    //方法三：Object.prototype.toString.call()
+    {
+        const a = "123";
+        const b = 12;
+        const d = false;
+        let e = null;
+        const obj = {name: 'zs', age: 12};
+        const arr = [1,2,3,4];
+        class Person{
+            constructor(name, gender) {
+                this.name = name;
+                this.gender = gender;
+            }
+        }
+        const p = new Person("lisi", 'male');
+        const pp = {};
+        pp.__proto__ = p;
+        console.log(Object.prototype.toString.call(a));
+        console.log(Object.prototype.toString.call(b));
+        // console.log(Object.prototype.toString.call(c));
+        console.log(Object.prototype.toString.call(d));
+        console.log(Object.prototype.toString.call(e));
+        console.log(Object.prototype.toString.call(obj));
+        console.log(Object.prototype.toString.call(arr));
+        console.log(Object.prototype.toString.call(p));
+        console.log(p instanceof Person);
+        console.log(Object.prototype.toString.call(pp));
+        console.log(pp, pp instanceof Person)
+        //很明显这种方法不能准确判断person是Person类的实例，而只能用instanceof 操作符来进行判断
+    }
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现call函数</title>
+</head>
+<body>
+</body>
+<script>
+    var name = 'xiaowang', age = 12;
+    var obj = {
+        name: 'zhangsan',
+        objAge: this.age,
+        myFun: function (fm, t) {
+            console.log(this.name+" 年龄："+this.age, "来自 "+ fm+" 去往 "+t);
+        }
+    };
+
+
+    var md = {
+        name: 'md',
+        age: 90
+    }
+    obj.myFun.call(md,'河南', '河北');
+
+    Function.prototype.myCall2 = function () {
+        let fn = this;
+        let args = [...arguments].slice(1);
+        return fn(...args)
+    }
+
+
+    Function.prototype.myCall2 = function (context) {
+        if(typeof this !== 'function'){
+            throw new TypeError('not function');
+        }
+        context = context || window;
+        context.fn = this;
+        let arg = [...arguments].slice(1);
+        let result = context.fn(...arg);
+        delete context.fn;
+        return result;
+    }
+
+
+
+
+    Function.prototype.myCall = function(context){
+        if(typeof this != 'function'){
+            throw new TypeError('not function');
+        }
+        context = context || window;
+        context.fn = this;
+        const args = [...arguments].slice(1);
+        const result = context.fn(...args);
+        return result;
+    }
+
+    obj.myFun.myCall(md,'河南', '河北');
+
+
+
+
+
+
+
+</script>
+</html>

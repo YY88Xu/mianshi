@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a = 10;
+    (function () {
+        console.log(a);
+        a = 5;
+        console.log(window.a);
+    })();
+
+    var b = 10;
+    (function () {
+        console.log(b);
+        var b = 5;
+        console.log(window.b);
+    })();
+    //
+    // (function () {
+    //     c = 5;
+    //     console.log('c', c);
+    // })();
+    // console.log('c', c);
+    //
+    function test() {
+        p = 12;
+    }
+    test();
+    console.log(p);
+    var obj = {
+        name: 'zs',
+        say: function () {
+            age = 12;
+            alert(age)
+        }
+    };
+    obj.say();
+    console.log(obj);
+    console.log(age);
+</script>
+
+<script>
+    // console.log(fun)
+    //
+    // console.log(person)
+</script>
+
+<script>
+    // console.log(person)
+    //
+    // console.log(fun)
+    //
+    // var person = "Eric";
+    //
+    // console.log(person)
+    //
+    // function fun() {
+    //     console.log(person)
+    //     var person = "Tom";
+    //     console.log(person)
+    // }
+</script>
+<script>
+    var obj1 = {name: 'zs'};
+    var obj2 = obj1;
+    obj1 = {age: 12};
+    console.log(obj1, obj2);
+    obj2.gender = 'male';
+    console.log(obj1, obj2);
+</script>
+</body>
+</html>

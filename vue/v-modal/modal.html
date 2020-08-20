@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>v-modal</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-component :message="pmessage" v-model="value"></my-component>
+    <p>父组件：{{value}}</p>
+</div>
+
+<script>
+    Vue.component('my-component', {
+        props: ['message', 'value'],
+        template: `<div>
+            <p>子组件message: {{message}}</p>
+            <p>子组件value: {{value}}</p>
+            <button @click="changeValue">change</button>
+        </div>`,
+        methods: {
+            changeValue(){
+                this.$emit("input", "123");
+            }
+        }
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            pmessage: 'Hello Vue.js!',
+            value: '我是value'
+        }
+    })
+
+    async function async1() {
+        console.log( 'async1 start' )
+        await async2()
+        console.log( 'async1 end' )
+    }
+    async function async2() {
+        console.log( 'async2' )
+    }
+    console.log( 'script start' )
+    setTimeout( function () {
+        console.log( 'setTimeout' )
+    }, 0 )
+    async1();
+    new Promise( function ( resolve ) {
+        console.log( 'promise1' )
+        resolve();
+    } ).then( function () {
+        console.log( 'promise2' )
+    } )
+    console.log( 'script end' )
+</script>
+</body>
+</html>

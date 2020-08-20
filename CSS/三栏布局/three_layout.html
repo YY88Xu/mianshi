@@ -34,8 +34,13 @@
             margin-left: 200px;
             margin-right: 200px;
         }
+        .clearfix:after{
+            display: block;
+            clear: both;
+            content: '';
+        }
     </style>
-    <article class="float-wrap" style="border: 1px solid;">
+    <article class="float-wrap clearfix" style="border: 1px solid;">
         <div class="left"></div>
         <div class="right"></div>
         <div class="center">
@@ -149,6 +154,7 @@
     <style>
         .wrap{
             position: relative;
+            border: 1px solid black;
         }
         .wrap-left{
             position: absolute;
