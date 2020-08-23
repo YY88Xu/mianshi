@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display-visibility-opacity</title>
+    <style>
+        div{
+            margin: 10px 0;
+        }
+        .display-wrap{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            /*display: none;*/
+        }
+        .dis-inner{
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+        }
+        .vis-wrap{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            visibility: hidden;
+        }
+        .vis-inner{
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            visibility: visible;
+        }
+        .opa-wrap{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            opacity: 1;
+        }
+        .opa-inner{
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="btn1">display change</button>
+    </div>
+    <div class="display-wrap" id="disWrap">
+        <div class="dis-inner"></div>
+    </div>
+
+    <div>
+        <button id="btn2">visibility change</button>
+    </div>
+
+    <div class="vis-wrap" id="visWrap">
+        <div class="vis-inner"></div>
+    </div>
+
+    <div>
+        <button id="btn3">opacity change</button>
+    </div>
+
+    <div class="opa-wrap" id="opaWrap">
+        <div class="opa-inner"></div>
+    </div>
+    <p>我是最后</p>
+    <script>
+        document.getElementById('btn1').onclick = function(){
+            document.getElementsByClassName('display-wrap')[0].style.display = 'none';
+        }
+
+        document.getElementById('btn2').onclick = function(){
+            document.getElementsByClassName('vis-wrap')[0].style.visibility = 'visible';
+        }
+
+        document.getElementById('btn3').onclick = function(){
+            document.getElementsByClassName('opa-wrap')[0].style.opacity = '1';
+        }
+
+        document.getElementById('disWrap').onclick = function () {
+            console.log('disWrap clicked');
+        }
+
+        document.getElementById('visWrap').onclick = function () {
+            console.log('visWrap clicked');
+        }
+
+        document.getElementById('opaWrap').onclick = function () {
+            console.log('opaWrap clicked');
+        }
+    </script>
+</body>
+</html>
