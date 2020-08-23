@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型链</title>
+</head>
+<body>
+<script>
+    var o1 = {name: 'o1'};
+    var o11 = new Object({name: 'o11'});
+
+    var M = function () {
+        this.name = 'o2';
+    }
+    var o2 = new M();
+
+    var p = {name: 'o3'};
+    var o3=Object.create(p);
+
+    var add = function(a,b) {
+        return a+b;
+    }
+</script>
+</body>
+</html>
