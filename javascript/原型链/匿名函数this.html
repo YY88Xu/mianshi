@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>匿名函数this</title>
+</head>
+<body>
+</body>
+<script>
+    const numbers = [1];
+    numbers.forEach(function () {
+        console.log(this);
+    });
+    const obj = {
+      name: 'zs',
+      say: function () {
+        console.log(this.name);
+      }
+    };
+
+    obj.say();
+</script>
+</html>

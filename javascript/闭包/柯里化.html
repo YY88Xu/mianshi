@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柯里化</title>
+</head>
+<body>
+</body>
+<script>
+    function add() {
+        let args = Array.prototype.slice.call(arguments);
+        let _add = function () {
+          args.push(...arguments);
+          return _add;
+        };
+        _add.toString = function () {
+            return args.reduce((cur, next)=>cur+next);
+          }
+        return _add();
+    }
+    console.log(add(1,2)(3));
+    console.log(add(1,2,3,4,5)(10)(10)(10)(10));
+</script>
+</html>

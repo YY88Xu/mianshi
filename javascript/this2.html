@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this2</title>
+</head>
+<body>
+</body>
+<script>
+    let obj = {
+      name: 'zs',
+      say: function () {
+        return ()=>{
+          console.log(this.name);
+        }
+      }
+    };
+    obj.say.call({name: 'lisi'})();
+    obj.say().call({name: 'lisi'});
+
+    var phrase = "test";
+
+    const printNumbers = {
+      phrase: 'The current value is:',
+      numbers: [1, 2, 3, 4],
+
+      loop() {
+        this.numbers.forEach(function (number) {
+          console.log(this.phrase, number)
+        })
+      },
+    }
+    printNumbers.loop();
+</script>
+</html>

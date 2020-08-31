@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+https://www.jianshu.com/p/2975c25e4d71
+<script>
+  // add(1)(2)(3) = 6;
+  // add(1, 2, 3)(4) = 10;
+  // add(1)(2)(3)(4)(5) = 15;
+
+    function add(...rest1) {
+        let args = [...rest1];
+        let _add = function (...rest2) {
+            args = args.concat(rest2);
+            return _add;
+        };
+        _add.toString = function () {
+            let sum = 0;
+            args.forEach(item=>{
+              sum+=item;
+            });
+            return sum.toString();
+        }
+      return _add;
+    }
+
+
+    console.log(add(1,2,3)(6)(1)(2)(3)(4));
+    console.log(9);
+</script>
+</body>
+</html>

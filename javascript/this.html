@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+<body>
+</body>
+<script>
+  {
+    var obj = {
+      say: function () {
+        setTimeout(function () {
+          console.log(this);
+        })
+      }
+    }
+    obj.say();
+  }
+
+  {
+    var obj = {
+      name: 'zs',
+      say: function () {
+        setTimeout(()=>{
+          console.log(this);
+        })
+      }
+    };
+    obj.say();
+  }
+
+  {
+    var id = 0;
+    var obj = {
+      id: 1,
+      show1: function(){
+        setTimeout(() => {
+          console.log(this.id)
+        }, 1000)
+      },
+
+      show2: function(){
+        setTimeout(function(){
+          console.log(this.id)
+        }, 2000)
+      }
+    };
+
+    obj.show1();    // 打印 1
+    obj.show2();    // 打印 0
+  }
+
+  {
+    // 箭头函数
+    function foo() {
+      setTimeout(() => {
+        console.log(this, this.id);
+      }, 100);
+    }
+
+    var id = 21;
+    foo.call({ id: 42 }); //42
+  }
+</script>
+</html>
