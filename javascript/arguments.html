@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arguments</title>
+</head>
+<body>
+<script>
+    function add() {
+      console.log(typeof arguments);
+      console.log(arguments instanceof Array);
+      let a = [];
+      console.log(Object.prototype.toString.call(arguments), Object.prototype.toString.call(a));
+    }
+    add(12);
+</script>
+</body>
+</html>
