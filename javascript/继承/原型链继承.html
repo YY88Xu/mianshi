@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型链继承</title>
+</head>
+<body>
+</body>
+<script>
+    function Animal() {
+        this.name = 'cat';
+        this.msg = {
+          age: 9
+        }
+    }
+    Animal.prototype.greet = function () {
+        console.log('hello')
+    };
+    function Dog() {
+        this.name = 'dog';
+    }
+
+    Dog.prototype = new Animal();
+
+    const a = new Dog();
+    a.msg.age = '99';
+
+    const b = new Dog();
+    b.msg.age = '199';
+    console.log(a, b);
+</script>
+</html>
