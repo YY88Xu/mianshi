@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型和构造函数结合</title>
+</head>
+<body>
+</body>
+<script>
+  function Animal() {
+    this.name = 'cat';
+    this.msg = {
+      age: 9
+    }
+  }
+  Animal.prototype.greet = function () {
+    console.log('hello')
+  };
+
+  function Dog() {
+    Animal.call(this);
+    this.name = 'dog';
+  }
+
+  Dog.prototype = new Animal();
+
+  const dog1 = new Dog();
+  dog1.msg.age = '99';
+
+  const dog2 = new Dog();
+  dog2.msg.age = '199';
+  console.log(dog1, dog2);
+</script>
+</html>

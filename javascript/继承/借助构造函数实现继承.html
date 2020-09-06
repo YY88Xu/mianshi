@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借助构造函数实现继承</title>
+</head>
+<body>
+</body>
+<script>
+  function Animal() {
+    this.name = 'cat';
+    this.msg = {
+      age: 9
+    }
+  }
+  Animal.prototype.walk = function () {
+    console.log(this.name +" walk");
+  }
+  function Dog() {
+    Animal.apply(this);
+    this.type = 'hashiqi';
+  }
+  let dog1 = new Dog();
+  let dog2 = new Dog();
+  dog1.msg.age = 12;
+  console.log(dog1, dog2);
+</script>
+</html>

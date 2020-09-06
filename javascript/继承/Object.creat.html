@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.create</title>
+</head>
+<body>
+</body>
+<script>
+  {
+    // new Object() 方式创建
+    let a = {  rep : 'apple' }
+    let b = new Object(a);
+    a.age = 12;
+    console.log(b) // {rep: "apple"}
+  }
+  {
+    // Object.create() 方式创建
+    let a = { rep: 'apple' }
+    let b = Object.create(a)
+    console.log(b)  // {}
+  }
+  {
+    function Animal() {
+      this.name = 'cat';
+      this.msg = {
+        age: 23
+      }
+    }
+    let ani = Object.create(Animal.prototype);
+    console.log(ani.__proto__.constructor);
+  }
+
+
+</script>
+</html>

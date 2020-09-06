@@ -8,9 +8,9 @@
 </body>
 <script>
     const create = function(fn, ...rest){
-        // let o = Object.create(fn.prototype);
-        let o = {};
-        o.__proto__ = fn.prototype;
+        let o = Object.create(fn.prototype);
+        // let o = {};
+        // o.__proto__ = fn.prototype;
         let result = fn.apply(o, rest);
         if(typeof result==='object'){
             return result;
