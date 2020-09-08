@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="816d4d00-1ce4-4605-be7e-7842425fd679" name="Default" comment="（+）arguments">
-      <change afterPath="$PROJECT_DIR$/javascript/继承/Object.creat.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/继承/借助构造函数实现继承.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/继承/原型和构造函数结合.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javascript/继承/组合优化方式.html" afterDir="false" />
+    <list default="true" id="816d4d00-1ce4-4605-be7e-7842425fd679" name="Default" comment="（+）继承">
+      <change afterPath="$PROJECT_DIR$/CSS/box-sizing/border-box.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSS/box-sizing/content-box.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javascript/继承/多继承.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/原型链/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/原型链/new.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript/继承/原型链继承.html" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/继承/原型链继承.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/浮动/垂直外边距重叠/同级元素重叠.html" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/浮动/垂直外边距重叠/同级元素重叠.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/浮动/垂直外边距重叠/父子重叠.html" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/浮动/垂直外边距重叠/父子重叠.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/继承/Object.creat.html" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/继承/Object.creat.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +119,8 @@
       <workItem from="1598972964500" duration="1045000" />
       <workItem from="1599046708264" duration="1232000" />
       <workItem from="1599263523130" duration="9583000" />
+      <workItem from="1599377868503" duration="3959000" />
+      <workItem from="1599384453255" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="（+）CSS动画">
       <created>1585882198850</created>
@@ -232,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599047917149</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="（+）继承">
+      <created>1599378060063</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1599378060063</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,13 +260,14 @@
     <MESSAGE value="（+）ES6" />
     <MESSAGE value="（+）this" />
     <MESSAGE value="（+）arguments" />
-    <option name="LAST_COMMIT_MESSAGE" value="（+）arguments" />
+    <MESSAGE value="（+）继承" />
+    <option name="LAST_COMMIT_MESSAGE" value="（+）继承" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="367" y="0" key="CommitChangelistDialog2" timestamp="1599047916610">
+    <state x="367" y="0" key="CommitChangelistDialog2" timestamp="1599378059525">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="367" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1599047916610" />
+    <state x="367" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1599378059525" />
     <state x="367" y="0" key="CommitChangelistDialog2/1920.0.1920.1030/0.0.1536.824@0.0.1536.824" timestamp="1598188704274" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1599316592291">
       <screen x="0" y="0" width="1536" height="824" />
@@ -267,10 +277,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598363822020" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599047924361">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599378066677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599047924361" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599378066677" />
     <state x="901" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1596633156468">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多继承</title>
+</head>
+<body>
+</body>
+<script>
+    function SuperClass() {
+        this.type = 'super';
+    }
+    SuperClass.prototype.sayType=function () {
+        console.log('type');
+    }
+    function OtherSuperClass() {
+        this.props = 'other';
+    }
+    OtherSuperClass.prototype.sayProps=function () {
+      console.log('other');
+    }
+    function MyClass() {
+        SuperClass.call(this);
+        OtherSuperClass.call(this);
+    }
+
+    MyClass.prototype = Object.create(OtherSuperClass.prototype);
+    Object.assign(MyClass.prototype, SuperClass.prototype);
+    MyClass.prototype.constructor = MyClass;
+
+    let m = new MyClass();
+    m.sayProps();
+    m.sayType();
+
+    let o = new OtherSuperClass();
+    console.log(o);
+
+
+</script>
+</html>
