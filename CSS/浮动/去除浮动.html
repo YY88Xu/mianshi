@@ -6,22 +6,21 @@
     <style type="text/css">
         .father {
             width: 100%;
-            background: #ececdd;
+            border: 5px solid black;
             display: block;
-            margin-top:40px;
         }
 
-        .father:after {
+        .father::after {
             content: "";
-            clear: both;
+            display: block;
+            clear: left;
         }
 
         .son {
             height: 100px;
-            width: 100%;
-            margin-top: 50px;
-            margin-bottom: 30px;
+            width: 500px;
             background: #d3cff7;
+            float: right;
         }
     </style>
 </head>
@@ -31,10 +30,6 @@
         son
     </div>
 </div>
-<div class="father">
-    <div class="son">
-        son
-    </div>
-</div>
+
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>没有内容将父元素和后代元素分开</title>
+</head>
+<body>
+<style type="text/css">
+    section{
+        margin-top: 30px;
+        margin-bottom: 87px;
+        background: #e61414;
+    }
+
+    header {
+        margin-top: 50px;
+        background: #d3cff7;
+    }
+
+    footer {
+        margin-bottom: 13px;
+        background: #999999;
+    }
+</style>
+
+<section>
+    <header>上边界重叠 87</header>
+    <main></main>
+    <footer>下边界重叠 87 不能再高了</footer>
+</section>
+<p>我是下面的</p>
+</body>
+</html>

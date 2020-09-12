@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  {
+    let obj = {name: 'zs', age: 12};
+    let proxy = new Proxy(obj, {
+      get: function (target, prop, receiver) {
+        console.log(`getting ${prop}`);
+        return Reflect.get(target, prop, receiver);
+      },
+      set: function (target, prop, value, receiver) {
+        console.log(`setting ${prop}`);
+        Reflect.set(target, prop, value, receiver);
+      }
+    })
+    obj.name;
+    proxy.name;
+    proxy.type = 'proxy';
+    console.log(obj, proxy)
+  }
+</script>
+</body>
+</html>

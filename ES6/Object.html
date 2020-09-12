@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object</title>
+</head>
+<body>
+<script>
+    let person = {};
+    Object.defineProperty(person, 'name', {
+      value: 'lisi',
+      configurable: true,
+      writable: false
+    });
+    person.name = 'zhangsan';
+    console.log(person.name);
+    delete person.name;
+    console.log(person.name);
+    console.log(Object.prototype.toString.call(person), Reflect.toString.call(person));
+</script>
+</body>
+</html>

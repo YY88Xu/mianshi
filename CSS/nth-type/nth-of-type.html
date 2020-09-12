@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nth-of-type</title>
+    <style>
+        .demo1 p:nth-of-type(2){
+            color: red;
+        }
+        .demo1 p:nth-of-type(3){
+            color: #348EED;
+        }
+        .demo2{
+            margin-top: 200px;
+        }
+
+        .demo2 :nth-of-type(2){
+            color: red;
+        }
+        .demo2 :nth-of-type(3){
+            color: #348EED;
+        }
+    </style>
+</head>
+<body>
+<div class="demo1">
+    <p>我是第一个元素</p>
+    <a href="baidu.com">No2</a>
+    <p>three: hahahha。虽然我是第三个元素，但是我是第二个p元素，所以我会改变样式</p>
+    <h3>66666</h3>
+    <p>three: 第三个p元素啊</p>
+</div>
+
+<p>
+    不论什么类型的元素第二个是red， 第三个是 #348EED 颜色
+</p>
+<div class="demo2">
+    <p>我是第一个元素</p>
+    <a href="baidu.com">No2</a>
+    <p>three: hahahha</p>
+    <h3>66666</h3>
+    <a href="baidu.com">No2, 我是第二个无论我是什么元素都会改变样式</a>
+    <p>three: hahahha，我是第三个p元素</p>
+</div>
+</body>
+</html>

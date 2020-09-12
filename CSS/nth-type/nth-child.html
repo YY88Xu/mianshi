@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nth-child</title>
+    <style>
+        .demo1 p:nth-child(2){
+            color: red;
+        }
+        .demo1 p:nth-child(3){
+            color: red;
+        }
+        .demo2{
+            margin-top: 200px;
+        }
+        .demo2 :nth-child(2){
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="demo1">
+    <p>我是第一个元素</p>
+    <a href="baidu.com">No2, 因为我不是p标签，所以样式不会变</a>
+    <p>three: hahahha</p>
+    <h3>66666</h3>
+</div>
+
+<div class="demo2">
+    <p>我是第一个元素</p>
+    <a href="baidu.com">No2, 我是第二个无论我是什么元素都会改变样式</a>
+    <p>three: hahahha</p>
+    <h3>66666</h3>
+</div>
+</body>
+</html>

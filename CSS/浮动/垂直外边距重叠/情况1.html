@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同一层相邻元素之间</title>
+</head>
+<body>
+<style>
+    .p1{
+        margin-bottom: 30px;
+    }
+    .p2{
+        margin-top: 60px;
+    }
+    p{
+        border: 1px solid #686868;
+    }
+</style>
+
+<p class="p1">下边界范围会...</p>
+<p class="p2">...会跟这个元素的上边界范围重叠。</p>
+</body>
+</html>
