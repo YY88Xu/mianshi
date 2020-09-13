@@ -6,17 +6,14 @@
 </head>
 <body>
 <script>
-    let person = {};
-    Object.defineProperty(person, 'name', {
-      value: 'lisi',
-      configurable: true,
-      writable: false
-    });
-    person.name = 'zhangsan';
-    console.log(person.name);
-    delete person.name;
-    console.log(person.name);
-    console.log(Object.prototype.toString.call(person), Reflect.toString.call(person));
+    let person = {
+      name: 'zhangsan',
+      [Symbol.for('id')]: 'id'
+    };
+    //delete person[Symbol.for('id')];
+    Reflect.deleteProperty(person, Symbol.for('id'));
+    console.log(person);
+
 </script>
 </body>
 </html>
