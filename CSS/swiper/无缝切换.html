@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container{
+            overflow:hidden;
+            width:400px;
+            height:300px;
+            margin:auto;
+        }
+        #front,#container{
+            display:flex;
+            flex-direction:row;
+        }
+        #container img{
+            width:400px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="front">
+        <img src="./images/t1.jpg" alt="">
+        <img src="./images/t2.jpg" alt="" >
+        <img src="./images/t3.jpg" alt="">
+        <img src="./images/t4.jpg" alt="">
+    </div>
+    <div id="back"><img src="./images/t5.jpg" alt=""></div>
+</div>
+</body>
+
+<script>
+  front.style="position:relative;left:0px;";
+  back.style="position:relative;left:0px;";
+  setInterval(moveimg,100);
+  var fleft,bleft;
+  function moveimg(){
+    fleft = parseInt(front.style.left);
+    bleft = parseInt(back.style.left);
+    if(fleft == -1600){
+      front.style.left = 400+"px";
+      fleft = parseInt(front.style.left);
+    }
+    if(bleft == -2000) {
+      back.style.left = 0+"px";
+      bleft = parseInt(back.style.left);
+    }
+    front.style.left = (fleft-10)+"px";
+    back.style.left = (bleft-10)+"px";
+  }
+</script>
+</html>

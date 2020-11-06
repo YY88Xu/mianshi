@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>swipe</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+        }
+        .wrap{
+            overflow: hidden;
+            width: 300px;
+            height: 200px;
+        }
+        .swiper-wrap{
+            font-size: 0;
+            height: 200px;
+            white-space: nowrap;
+        }
+        .block{
+            width: 300px;
+            height: 200px;
+            font-size: 32px;
+            color: white;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+        }
+        .block1{
+            background-color: red;
+        }
+        .block2{
+            background-color: orange;
+        }
+        .block3{
+            background-color: lightcoral;
+        }
+        .block4{
+            background-color: lightblue;
+            display: inline-flex;
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="swiper-wrap" id="swiper">
+        <div class="block1 block">1</div>
+        <div class="block2 block">2</div>
+        <div class="block3 block">3</div>
+        <div class="block4 block">4</div>
+        <div class="block1 block">1</div>
+    </div>
+</div>
+
+<script>
+  function swipe2(){
+    const swiperDom = document.querySelector("#swiper");
+    //当前显示的第几个
+    let current = 1;
+    swiperDom.addEventListener("transitionend", myTransitionEnd);
+    swiperDom.addEventListener("webkitTransitionend", myTransitionEnd);
+    function myTransitionEnd(){
+      if(current >= 5){
+        current = 1;
+        swiperDom.style.transition = "none";
+        swiperDom.style.webkitTransition = "none";
+        swiperDom.style.transform = "translateX(0px)";
+      }
+    }
+    let timer1 = null;
+    let timer2 = null;
+
+    const play = ()=>{
+      timer1 = setTimeout(()=>{
+        const X = current * (-300);
+        swiperDom.style.transition = "transform 1s linear";
+        swiperDom.style.webkitTransition = "transform 1s linear";
+        swiperDom.style.transform = `translateX(${X}px)`;
+        current++;
+        timer2 = setInterval(()=>{
+          const X = current * (-300);
+          swiperDom.style.transition = "transform 1s linear";
+          swiperDom.style.transform = `translateX(${X}px)`;
+          current++;
+        }, 2000);
+      },1000);
+    }
+
+    const pause = ()=>{
+      clearTimeout(timer1);
+      clearInterval(timer2);
+    }
+
+    play();
+    const bowhidden="hidden" in document?"hidden": "webkithidden" in document?"webkithidden": "mozhidden" in document ?"mozhidden": null;
+    const vibchage="visibilitychange" || "webkitvisibilitychange" || "mozvisibilitychange";
+    document.addEventListener(vibchage, function (){
+      /*ie10+  moz  webkit  默认*/
+      if(!document[bowhidden]) /*false*/
+      {
+        play();
+        console.log("激活");
+      }
+      else{
+        pause();
+        /*true*/
+        console.log("隐藏");
+
+      }
+    })
+  }
+
+  swipe2();
+  function swipe11(){
+    const swiperDom = document.querySelector("#swiper");
+    //当前显示的第几个
+    let current = 1;
+    let timer1, timer2, timer3;
+    const play = ()=> {
+      timer1 = setTimeout(()=>{
+        const X = current * (-300);
+        swiperDom.style.transition = "transform 1s linear";
+        swiperDom.style.transform = `translateX(${X}px)`;
+        current++;
+        timer2 = setInterval(()=>{
+          const X = current * (-300);
+          swiperDom.style.transition = "transform 1s linear";
+          swiperDom.style.transform = `translateX(${X}px)`;
+          current++;
+          if(current>=5){
+            current = 1;
+            timer3 = setTimeout(()=>{
+              swiperDom.style.transition = "none";
+              swiperDom.style.transform = "translateX(0px)";
+            }, 1000)
+          }
+        }, 2000);
+      },1000);
+    }
+
+    const pause = ()=> {
+      clearTimeout(timer1);
+      clearInterval(timer2);
+      clearTimeout(timer3);
+    }
+
+    play();
+    const bowhidden="hidden" in document?"hidden": "webkithidden" in document?"webkithidden": "mozhidden" in document ?"mozhidden": null;
+    const vibchage="visibilitychange" || "webkitvisibilitychange" || "mozvisibilitychange";
+    document.addEventListener(vibchage, function (){
+      /*ie10+  moz  webkit  默认*/
+      if(!document[bowhidden]) /*false*/
+      {
+        play();
+        console.log("激活");
+      }
+      else{
+        pause();
+        /*true*/
+        console.log("隐藏");
+
+      }
+    })
+  }
+
+
+
+</script>
+</body>
+</html>

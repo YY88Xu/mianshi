@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bind</title>
+</head>
+<body>
+<script>
+    Function.prototype.myCall = function (context) {
+        if(typeof this !== 'function'){
+          return new Error("not function");
+        }
+        context = context || window;
+        context.fn = this;
+        const args = [...arguments].slice(1);
+        const result = context.fn(...args);
+        delete context.fn;
+        return result;
+    }
+    var obj = {
+      name: 'zs',
+      say: function (val) {
+        console.log(this.name);
+        console.log("val："+val);
+      }
+    }
+    var tmp = { name: 'tmp'};
+    obj.say.call(tmp);
+    obj.say.myCall(tmp);
+
+    Function.prototype.myBind = function (context) {
+        if(typeof this !== "function"){
+          return new Error("not function");
+        }
+        const that = this;
+        let args = [...arguments].slice(1);
+        return function F() {
+          args = args.concat(...arguments);
+          if(this instanceof F){
+            return new that(...args);
+          }else{
+            return that.apply(context, args);
+          }
+        }
+    }
+    function Person(name, age){
+      this.name = name;
+      this.age = age;
+    }
+    const p = new Person("test", 100);
+
+    let pp = {type: 'pp'};
+    let tmpP = Person.myBind(pp, "pp");
+    let ppp = new tmpP(200);
+    console.log(pp, ppp);
+
+    obj.say.myBind({name: "bindFn"})("什么");
+    obj.say.myBind({name: "bindFn"}, "什么鬼")();
+
+
+
+
+
+</script>
+</body>
+</html>

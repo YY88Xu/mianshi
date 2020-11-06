@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        .left-circle{
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 20px solid transparent;
+            border-right: 20px solid green;
+            border-top: 20px solid green;
+            transform: rotate(45deg);
+            animation: progress-left 5s linear infinite;
+        }
+        .right-circle{
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 20px solid transparent;
+            border-left: 20px solid green;
+            border-bottom: 20px solid green;
+            transform: rotate(45deg);
+            position: absolute;
+            right: 0;
+            animation: progress-right 5s linear infinite;
+        }
+        .circle-wrap{
+            width: 200px;
+            height: 200px;
+            display: flex;
+        }
+        .item-wrap{
+            width: 100px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        @keyframes progress-right {
+            0%{
+                transform: rotate(45deg);
+            }
+            50%, 100%{
+                transform: rotate(225deg);
+            }
+        }
+
+        @keyframes progress-left {
+            0%, 50%{
+                transform: rotate(45deg);
+            }
+            100%{
+                transform: rotate(225deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="circle-wrap">
+    <div class="item-wrap">
+        <div class="left-circle"></div>
+    </div>
+    <div class="item-wrap">
+        <div class="right-circle"></div>
+    </div>
+</div>
+<p>https://www.cnblogs.com/hailun/p/6245095.html</p>
+</body>
+<script>
+    //[1,[2,3],[[4],[5,6]]]
+    function flatt(arr) {
+      let result = [];
+        arr.forEach(item=>{
+          if(Array.isArray(item)){
+            result = result.concat(flatt(item))
+          }else{
+            result.push(item);
+          }
+        })
+      return result;
+    }
+    console.log(flatt([1,[2,3],[[4],[5,6]]]))
+</script>
+</html>

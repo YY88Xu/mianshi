@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>桶排序</title>
+</head>
+<body>
+<script>
+    function tongSort(arr) {
+        let result = [];
+        arr.forEach(item=>{
+            if(result[item]){
+              result[item] = result[item] +1;
+            }else{
+              result[item] = 1;
+            }
+        })
+      let tt = [];
+      result.forEach((item, key)=>{
+        if(item){
+          for(let i=0;i<item;i++){
+            tt.push(key);
+          }
+        }
+      })
+      return tt;
+    }
+    //console.log(tongSort([22,3,5,1,56,23,1]))
+    const name = "zhangsan";
+    console.log(`name is ${name}`)
+</script>
+</body>
+</html>

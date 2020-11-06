@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<script src="Observer.js"></script>
+<body>
+<input type="text" id="myInput">
+<p></p>
+</body>
+<script>
+    let vm = {
+      data: {
+        message: 'hello'
+      }
+    };
+
+    document.getElementById("myInput").value = vm.data.message;
+    document.querySelector('input').oninput = function(v, a){
+      let x = document.getElementById("myInput").value;
+      vm.data.message = x;
+    }
+    document.querySelector('p').innerHTML = vm.data.message;
+
+    new Observer(vm);
+    new Watcher(vm, "data.message", function (newVal, val) {
+      document.querySelector('p').innerHTML = newVal;
+    });
+</script>
+<script>
+    const list = [];
+    list.__proto__ = arrayMethods;
+    list.push(2);
+
+</script>
+</html>

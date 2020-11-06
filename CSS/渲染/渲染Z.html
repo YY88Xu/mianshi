@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(200px);
+            }
+        }
+        .move {
+            animation: move 3s linear;
+            transform: translateZ(0);
+        }
+    </style>
+</head>
+<body>
+<div style="background-color: #348EED;width: 500px;height: 500px">
+    <div class="move" style="background-color: red; width: 100px; height: 100px;"></div>
+</div>
+
+
+</body>
+</html>
+

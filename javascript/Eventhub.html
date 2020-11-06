@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventHub</title>
+</head>
+<body>
+<script>
+    //发布订阅 https://blog.csdn.net/weixin_44145258/article/details/106664858
+    class EventHub{
+      cache = {};
+      on(eventName, fn){
+        // on把函数推进cache数组
+        this.cache[eventName] = this.cache[eventName] || [];
+        this.cache[eventName].push(fn);
+      }
+      emit(eventName, data){
+        //emit 把cache里面的fn依次调用
+        (this.cache[eventName]||[]).forEach(fn=>fn(data));
+      }
+      off(eventName, fn){
+        //删除cache中的事件fn
+        let index = this.cache[eventName].indexOf(fn);
+        this.cache[eventName].splice(index, 1);
+      }
+    }
+    const eventHub = new EventHub();
+    function fn1(val) {
+        console.log(1, val);
+    }
+    function fn2(val) {
+      console.log(2, val);
+    }
+    function fn3(val) {
+      console.log(3, val);
+      eventHub.off("init", fn2);
+    }
+    eventHub.on("init", fn1)
+    eventHub.on("init", fn2)
+    eventHub.on("init", fn3)
+    console.log(eventHub.cache["init"]);
+    eventHub.emit("init", "是我啊");
+    eventHub.emit("init", "第二次");
+</script>
+</body>
+</html>
